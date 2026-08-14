@@ -6,6 +6,7 @@ body {
 }
 
 .contenedor-main {
+    /*este es el contenedor del main*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,7 +25,8 @@ h1 {
 
 .resultado {
     /*esta clase sería para esas partes donde se muestran los mensajes o resultados*/
-    border-radius: 10px;
+    padding: 20px;
+    border-radius: 5px;
     background-color: rgb(233, 220, 204);
     color: rgb(85, 85, 85);
     
