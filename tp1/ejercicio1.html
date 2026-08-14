@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- Ejercicio 1
+Confeccionar un formulario que solicite un número. Al pulsar el botón de enviar debe
+llamar a un script –vernumero.php- y visualizar un mensaje que indique si el número
+enviado fue: positivo, cero o negativo. Añadir un link, a la página que visualiza la
+respuesta, que permita volver a la página anterior. -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <main class="contenedor-main">
+        <div class="contenedor">
+            <h1>Ejercicio n° 1</h1>
+            <form action="vernumero.php" method="POST" class="form-contenedor">
+                <label for="">Ingresá un numero</label>
+                <input type="number" name="numero" value="Ej: 5" required>
+                <button type="submit" class="btn-enviar">Consultar numero</button>
+            </form>
+            <a href="/tp1/inicio_tp1.html" class="btn-volver" target="_blank">Volver al índice de ejercicios</a>
+        </div>
+    </main>
+</body>
+
+</html>

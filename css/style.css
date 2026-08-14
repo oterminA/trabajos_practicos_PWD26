@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: rgb(231, 204, 231);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.contenedor-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+}
+
+.error {
+    /*esta clase marca los errores de texto por ejemplo "no se encontró el archivo"*/
+    color: red;
+    font-weight: 600;
+}
+
+.resultado {
+    /*esta clase sería para esas partes donde se muestran los mensajes o resultados*/
+    border-radius: 10px;
+    background-color: rgb(233, 220, 204);
+    color: rgb(85, 85, 85);
+    
+}
+
+.contenedor {
+    /*esta clase es para los contenedores generales, onda de los formularios y demás*/
+    padding: 20px;
+    width: max-content;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 2px 5px 8px rgb(168, 168, 168);
+}
+
+.form-contenedor{
+    /*esta clase es para los contenedores generales, onda de los formularios y demás*/
+    padding: 20px;
+    width: max-content;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.contenedor-de-mini {
+    /*en esta clase quiero guardar todos los mini contenedores para que queden uno al lado del otro*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 15px;
+}
+
+.mini-contenedor {
+    /*esta clase es para los contenedores del estilo badge o mini contenedor que solo tiene un link o una pequeña descripcion*/
+    padding: 10px;
+    background-color: purple;
+    width: max-content;
+    color: white;
+    border-radius: 5px;
+    margin: 20px;
+    box-shadow: 2px 5px 8px rgb(168, 168, 168);
+}
+
+.mini-contenedor a {
+    color: white;
+    font-style: italic;
+}
+
+.mini-contenedor:hover {
+    background-color: rgb(185, 80, 185);
+}
+
+.btn-enviar,
+.btn-volver,
+.btn-guardar {
+    border-radius: 5px;
+    height: 40px;
+    padding: 10px;
+}
+
+.btn-enviar {
+    /*esta clase es para los botones enviar*/
+    background-color: blue;
+    color: white;
+    border: 0 blue;
+}
+
+.btn-volver {
+    /*esta clase es para los botones enviar*/
+    background-color: gray;
+    color: black;
+}
+
+.btn-guardar {
+    /*esta clase es para los botones del tipo confirmar cambios*/
+    background-color: green;
+    color: white;
+}
+
+.btn-enviar:hover {
+    background-color: rgb(29, 29, 252);
+}
+
+.btn-guardar:hover {
+    background-color: rgb(42, 160, 42);
+}
+
+.btn-volver:hover {
+    background-color: rgb(173, 172, 172);
+}
+
+a{
+    text-decoration: none;
+}
+
+button{
+    cursor: pointer;
+}
