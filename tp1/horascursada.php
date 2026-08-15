@@ -1,6 +1,9 @@
 <?php
-$numero = $_POST["numero"] ?? ''; //se guarda el valor del input number que puso el user y viajó en el post y reviso tambien si no vino nada
-$numero = trim($numero); //le saco los espacios
+$suma = 0; //variable inicializada en cero
+$arregloDias = $_GET; //el arreglo que llega por post lo recupero acá como para hacerlo más ordenado
+foreach ($arregloDias as $dia => $horas) { //recorro el arreglo para sumar las horas
+    $suma = $suma + $horas;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,21 +12,15 @@ $numero = trim($numero); //le saco los espacios
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Resolucion ejercicio 1</title>
+    <title>Resolucion ejercicio 2</title>
 </head>
 
 <body>
     <main class="contenedor-main">
         <div class="contenedor">
             <h1>Resolucion</h1>
-            <?php if ($numero > 0): ?>
-                <p class="resultado">El número ingresado es <?php echo $numero ?> y es un numero POSITIVO.</p>
-            <?php elseif ($numero < 0): ?>
-                <p class="resultado">El número ingresado es <?php echo $numero ?> y es un numero NEGATIVO.</p>
-            <?php else: ?>
-                <p class="resultado">El número ingresado es CERO.</p>
-            <?php endif; ?>
-            <a href="/tp1/ejercicio1.html" class="btn-volver" target="_blank">Volver atrás</a>
+                <p class="resultado">La cantidad de horas en las que cursa Programación Web Dinámica son: <?php echo $suma ?> hora(s).</p>
+            <a href="/tp1/ejercicio2.html" class="btn-volver"  >Volver atrás</a>
         </div>
     </main>
 </body>

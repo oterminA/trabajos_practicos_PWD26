@@ -85,10 +85,11 @@ h1 {
 
 .btn-enviar,
 .btn-volver,
-.btn-guardar {
+.btn-guardar,
+.btn-borrar {
     border-radius: 5px;
-    height: 40px;
-    padding: 10px;
+    padding: 7px;
+    margin: 10px;
 }
 
 .btn-enviar {
@@ -99,7 +100,7 @@ h1 {
 }
 
 .btn-volver {
-    /*esta clase es para los botones enviar*/
+    /*esta clase es para los botones volver*/
     background-color: gray;
     color: black;
 }
@@ -108,6 +109,13 @@ h1 {
     /*esta clase es para los botones del tipo confirmar cambios*/
     background-color: green;
     color: white;
+}
+
+.btn-borrar {
+    /*esta clase es para los botones del tipo reset*/
+    background-color: red;
+    color: white;
+    border: 0;
 }
 
 .btn-enviar:hover {
@@ -122,10 +130,18 @@ h1 {
     background-color: rgb(173, 172, 172);
 }
 
+.btn-borrar:hover {
+    background-color: rgb(253, 45, 45);
+}
+
 a{
     text-decoration: none;
 }
 
 button{
     cursor: pointer;
+}
+
+label{
+    margin: 5px;
 }

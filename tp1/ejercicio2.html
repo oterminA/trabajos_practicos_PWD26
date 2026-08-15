@@ -18,9 +18,24 @@ se cursan por semana. -->
     <main class="contenedor-main">
         <div class="contenedor">
             <h1>Ejercicio n° 2</h1>
+            <h2>Ingresar las horas de cursada de PWD</h2>
             <form action="horascursada.php" method="GET" class="form-contenedor">
+                <!-- <label for="">Nombre estudiante</label> -->
+                <!-- <input type="text" required max="10" min="3" name="nombre"> -->
+                <label for="">Lunes</label>
+                <input type="number" required name="horasL" step="0.01">
+                <label for="">Martes</label>
+                <input type="number" required name="horasM" step="0.01">
+                <label for="">Miércoles</label>
+                <input type="number" required name="horasMi" step="0.01">
+                <label for="">Jueves</label>
+                <input type="number" required name="horasJ" step="0.01">
+                <label for="">Viernes</label>
+                <input type="number" required name="horasV" step="0.01"> 
+                <button type="reset" class="btn-borrar">Limpiar campos</button>
+                <button type="submit" class="btn-enviar">Enviar</button>
             </form>
-            <a href="/tp1/inicio_tp1.html" class="btn-volver" target="_blank">Volver al índice de ejercicios</a>
+            <a href="/tp1/inicio_tp1.html" class="btn-volver"  >Volver al índice de ejercicios</a>
         </div>
     </main>
 </body>

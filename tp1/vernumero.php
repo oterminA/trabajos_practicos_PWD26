@@ -1,6 +1,6 @@
 <?php
 $numero = $_POST["numero"] ?? ''; //se guarda el valor del input number que puso el user y viajó en el post y reviso tambien si no vino nada
-$numero = trim($numero); //le saco los espacios
+$numero = (int) $numero; //me aseguro que sea entero
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +23,7 @@ $numero = trim($numero); //le saco los espacios
             <?php else: ?>
                 <p class="resultado">El número ingresado es CERO.</p>
             <?php endif; ?>
-            <a href="/tp1/ejercicio1.html" class="btn-volver" target="_blank">Volver atrás</a>
+            <a href="/tp1/ejercicio1.html" class="btn-volver"  >Volver atrás</a>
         </div>
     </main>
 </body>
