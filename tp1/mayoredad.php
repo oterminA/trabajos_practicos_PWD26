@@ -1,4 +1,5 @@
 <?php
+include_once 'funciones.php';
 $nombre = $_POST["nombre"] ?? '';
 $apellido = $_POST["apellido"] ?? '';
 $edad = $_POST["edad"] ?? '';
@@ -8,7 +9,7 @@ $nombre = trim($nombre);
 $apellido = trim($apellido);
 $direccion = trim($direccion);
 $edad = (int) $edad;
-
+$esMayorEdad = esMayor($edad);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,11 +28,14 @@ $edad = (int) $edad;
             <?php if ($nombre === '' || $edad === '' || $direccion === '' || $apellido === ''): ?>
                 <p class="error">Los campos no pueden estar vacíos</p>
             <?php else: ?>
-                <?php if ($edad > 18) : ?>
-                    <p class="resultado">Hola soy <?php echo $nombre . " " .  $apellido?>, soy mayor de edad y vivo en <?php echo $direccion?></p>
-                <?php else: ?>
-                    <p class="resultado">Hola soy <?php echo $nombre . " " .  $apellido?>, soy menor de edad y vivo en <?php echo $direccion?></p>
-                <?php endif; ?>
+                <?php
+                if ($esMayorEdad) {
+                    $texto = "mayor";
+                } else {
+                    $texto = "menor";
+                }
+                ?>
+                <p class="resultado">Hola soy <?php echo $nombre . " " .  $apellido ?>, soy <?php echo $texto ?> de edad y vivo en <?php echo $direccion ?></p>
             <?php endif; ?>
             <a href="/tp1/ejercicio4.html" class="btn-volver">Volver atrás</a>
         </div>

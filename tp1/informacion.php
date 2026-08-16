@@ -12,6 +12,7 @@ $nombre = trim($nombre);
 $apellido = trim($apellido);
 $direccion = trim($direccion);
 $edad = (int) $edad;
+$esMayorEdad = esMayor($edad);
 $genero = darGenero($genero); //guardo lo que ya devuelva la variable según la elección desde el html
 $estudios = estudioAlcanzado($estudios); //guardo lo que ya devuelva la variable segun la eleccion desde el html
 $cantidad = cuantosDeportes($deportes);
@@ -33,12 +34,14 @@ $cantidad = cuantosDeportes($deportes);
             <?php if ($nombre === '' || $edad === '' || $direccion === '' || $apellido === '' || $genero === '' || $estudios === ''): ?>
                 <p class="error">Los campos no pueden estar vacíos</p>
             <?php else: ?>
-                <?php if ($edad > 18) : ?>
-                    <p class="resultado">Hola soy <?php echo $nombre . " " .  $apellido ?>, soy mayor de edad y vivo en <?php echo $direccion ?>. Me identifico con el genero <?php echo $genero ?> y mi nivel de estudios es <?php echo $estudios ?>. Tambien practico <?php echo $cantidad ?> deporte(s)</p>
-                <?php else: ?>
-                    <p class="resultado">Hola soy <?php echo $nombre . " " .  $apellido ?>, soy menor de edad y vivo en <?php echo $direccion ?>. Me identifico con el genero <?php echo $genero ?> y mi nivel de estudios es <?php echo $estudios ?>. Tambien practico <?php echo $cantidad ?> deporte(s)</p>
-                    </p>
-                <?php endif; ?>
+                <?php
+                if ($esMayorEdad) {
+                    $texto = "mayor";
+                } else {
+                    $texto = "menor";
+                }
+                ?>
+                <p class="resultado">Hola soy <?php echo $nombre . " " .  $apellido ?>, soy <?php echo $texto ?> de edad y vivo en <?php echo $direccion ?>. Me identifico con el genero <?php echo $genero ?> y mi nivel de estudios es <?php echo $estudios ?>. Tambien practico <?php echo $cantidad ?> deporte(s)</p>
             <?php endif; ?>
             <a href="/tp1/ejercicio6.html" class="btn-volver">Volver atrás</a>
         </div>

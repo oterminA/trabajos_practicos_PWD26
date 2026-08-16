@@ -16,14 +16,18 @@ $numero = (int) $numero; //me aseguro que sea entero
     <main class="contenedor-main">
         <div class="contenedor">
             <h1>Resolucion</h1>
-            <?php if ($numero > 0): ?>
-                <p class="resultado">El número ingresado es <?php echo $numero ?> y es un numero POSITIVO.</p>
-            <?php elseif ($numero < 0): ?>
-                <p class="resultado">El número ingresado es <?php echo $numero ?> y es un numero NEGATIVO.</p>
-            <?php else: ?>
-                <p class="resultado">El número ingresado es CERO.</p>
-            <?php endif; ?>
-            <a href="/tp1/ejercicio1.html" class="btn-volver"  >Volver atrás</a>
+            <?php
+            if ($numero > 0) {
+                $tipo = "positivo";
+            } elseif ($numero) {
+                $tipo = "negativo";
+            } else {
+                $tipo = "cero";
+            }
+            ?>
+            <p class="resultado">El número ingresado es <?php echo $numero ?> y es <?php echo $tipo ?>.</p>
+
+            <a href="/tp1/ejercicio1.html" class="btn-volver">Volver atrás</a>
         </div>
     </main>
 </body>

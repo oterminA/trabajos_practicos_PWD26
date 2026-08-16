@@ -145,3 +145,15 @@ button{
 label{
     margin: 5px;
 }
+
+/*para ocultar las flechitas del input type number en chrome, edge, safari etc*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*para ocultar las flechitas del input type number en firefox*/
+input[type="number"] {
+  -moz-appearance: textfield;
+}

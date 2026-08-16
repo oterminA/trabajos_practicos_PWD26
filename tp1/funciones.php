@@ -1,6 +1,15 @@
 <?php
 //este es un archivo para guardar funciones auxiliares que se repiten en distintos scritps
 
+function esMayor($edad)
+{
+    $resp = false;
+    if ($edad > 18) {
+        $resp = true;
+    }
+    return $resp;
+}
+
 function darGenero($genero)
 {
     switch ($genero) {
