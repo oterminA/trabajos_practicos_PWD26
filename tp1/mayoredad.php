@@ -9,7 +9,7 @@ $nombre = trim($nombre);
 $apellido = trim($apellido);
 $direccion = trim($direccion);
 $edad = (int) $edad;
-$esMayorEdad = esMayor($edad);
+$esMayorEdad = esMayor($edad); //guardo lo que ya devuelva la variable segun la eleccion desde el html
 ?>
 <!DOCTYPE html>
 <html lang="en">
