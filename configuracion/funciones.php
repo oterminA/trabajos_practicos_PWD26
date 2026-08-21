@@ -112,3 +112,43 @@ function hacerOperacion($operacion, $numeroA, $numeroB)
     }
     return $resultado; //retorna el float/integer como resultado
 }
+
+
+/** 
+ * esta funcion trae los datos del post/get y los recorre
+*/
+
+function data_submitted() {
+    $_AAux= array();
+    if (!empty($_POST))
+        $_AAux =$_POST;
+    else
+        if(!empty($_GET)) {
+            $_AAux =$_GET;
+        }
+    if (count($_AAux)){
+        foreach ($_AAux as $indice => $valor) {
+            if (is_string($valor)) {
+                $_AAux[$indice] = trim($valor);
+            }
+        }
+    }
+    return $_AAux;
+}
+
+/**
+ * esta funcion carga dinamicamente las clases a los scripts
+*/
+spl_autoload_register(function ($clase) {
+    $directorys = array(
+        $GLOBALS['ROOT'].'control/',
+    );
+    foreach($directorys as $directory){
+        if(file_exists($directory.$clase . '.php')){
+            require_once($directory.$clase . '.php');
+            return;
+        }
+    }
+
+
+});

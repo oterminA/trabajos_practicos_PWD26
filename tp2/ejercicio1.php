@@ -7,7 +7,7 @@ coinciden con alguno de los almacenados en el arreglo y en caso contrario un men
 <link rel="stylesheet" href="/css/style.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/style.css>
-<title>Ejercicio 1</title>
+<title>Ejercicio 1</title> 
 
 <body>
     <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
@@ -16,31 +16,31 @@ coinciden con alguno de los almacenados en el arreglo y en caso contrario un men
 <div class="contenedor">
     <h1>Ejercicio n° 1</h1>
     <h2>Iniciar sesión</h2>
-    <form action="verificarPass.php" method="POST" class="form-contenedor">
+    <form action="verificaPass.php" method="POST" class="form-contenedor" onclick="return noRepetir()">
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Usuario</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" name="usuario">
+            <input type="text" class="form-control usuario" id="exampleFormControlInput1" name="usuario" required pattern="[a-z]{3,10}" minlength="3" maxlength="10">
         </div>
-        <div class="col-auto">
+
+        <div class="mb-3">
             <label for="inputPassword6" class="col-form-label">Contraseña</label>
+            <input type="password" id="inputPassword6" class="form-control clave" aria-describedby="passwordHelpInline" name="clave" required minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
         </div>
-        <div class="col-auto">
-            <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" name="clave">
-        </div>
-        <div class="col-auto">
-            <span id="passwordHelpInline" class="form-text">
-                Tiene que tener de 6-12 caracteres.
-            </span>
-        </div>
-        <button type="button" class="btn btn-primary">Ingresar</button>
-        <button type="reset" class="btn btn-danger">LImpiar campos</button>
+
+        <span class="form-text">
+            <p class="text-danger pVista"></p>
+        </span>
+
+        <button type="submit" class="btn btn-success boton">Ingresar</button>
+        <button type="reset" class="btn btn-danger">Limpiar campos</button>
         <a href="/tp2/inicio_tp2.php" class="btn-volver">Volver al índice de ejercicios</a>
     </form>
 </div>
 </main>
 <?php include_once(__DIR__ . '/../estructura/footer.php'); ?>
 
+<script src="../js/verificaciones.js"></script>
 </body>
 
 </html>
