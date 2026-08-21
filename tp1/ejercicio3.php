@@ -13,7 +13,7 @@ Cambiar el método Post por Get y analizar las diferencias -->
         <div class="contenedor">
             <h1>Ejercicio n° 3</h1>
             <h2>Completá los datos</h2>
-            <form action="mostrardatos.php" method="POST" class="form-contenedor" onsubmit="return">
+            <form action="mostrardatos.php" method="POST" class="form-contenedor">
                 <label>Nombre:</label>
                 <input type="text" name="nombre" required max="10">
                 <label>Apellido</label>
