@@ -70,7 +70,7 @@ function estudioAlcanzado($estudio)
 
 /**
  * esta funcion se usa para que ingresado un array dice cuántos elementos hay en ese array
- * recibe un array
+ * recibe un elemento boolean, que es un array pero si es true significa que no hay elementos dentro
  * retorna integer
  */
 function cuantosDeportes($deporte)
