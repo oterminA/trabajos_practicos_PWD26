@@ -1,23 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <title>Trabajo prácticos</title>
-</head>
 
 <body>
+    <?php include_once '../trabajos_practicos/estructura/header.php';?>
     <main class="contenedor-main">
         <div class="contenedor">
             <h1>Este es un índice a los trabajos prácticos</h1>
             <div class="contenedor-de-mini">
                 <div class="mini-contenedor">
-                    <a href="/tp1/inicio_tp1.html"  >Trabajo práctico 1</a>
+                    <a href="/tp1/inicio_tp1.php">Trabajo práctico 1</a>
                 </div>
                 <div class="mini-contenedor">
-                    <a href="#">No hay tp aún</a>
+                    <a href="/tp2/inicio_tp2.php">Trabajo práctico 2</a>
                 </div>
                 <div class="mini-contenedor">
                     <a href="#">No hay tp aún</a>
@@ -28,6 +22,7 @@
             </div>
         </div>
     </main>
+    <?php include_once '../trabajos_practicos/estructura/footer.php';?>
 </body>
 
 </html>

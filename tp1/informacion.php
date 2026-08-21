@@ -17,17 +17,12 @@ $genero = darGenero($genero); //guardo lo que ya devuelva la variable según la 
 $estudios = estudioAlcanzado($estudios); //guardo lo que ya devuelva la variable segun la eleccion desde el html
 $cantidad = cuantosDeportes($deportes);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <title>Resolucion ejercicio 6</title>
-</head>
 
 <body>
+    <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
+
     <main class="contenedor-main">
         <div class="contenedor">
             <h1>Resolucion</h1>
@@ -46,6 +41,8 @@ $cantidad = cuantosDeportes($deportes);
             <a href="/tp1/ejercicio6.html" class="btn-volver">Volver atrás</a>
         </div>
     </main>
+    <?php include_once(__DIR__ . '/../estructura/footer.php'); ?>
+
 </body>
 
 </html>

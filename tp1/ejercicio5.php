@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<!-- Ejercicio 6
-Modificar el formulario del ejercicio anterior para que permita seleccionar los diferentes
-deportes que practica (futbol, basket, tennis, voley) un alumno. Mostrar en la página
-que procesa el formulario la cantidad de deportes que practica -->
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Ejercicio 5
+Modificar el formulario del ejercicio anterior solicitando, tal que usando componentes
+“radios buttons” se ingrese el nivel de estudio de la persona: 1-no tiene estudios, 2-
+estudios primarios, 3-estudios secundarios. Agregar el componente que crea más
+apropiado para solicitar el sexo. En la página que procesa el formulario mostrar además
+un mensaje que indique el tipo de estudios que posee y su sexo. -->
     <link rel="stylesheet" href="/css/style.css">
-    <title>Ejercicio 6</title>
-</head>
+    <title>Ejercicio 5</title>
 
 <body>
+    <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
     <main class="contenedor-main">
         <div class="contenedor">
-            <h1>Ejercicio n° 6</h1>
+            <h1>Ejercicio n° 5</h1>
             <h2>Completá los datos</h2>
-            <form action="informacion.php" method="POST" class="form-contenedor">
+            <form action="mostrardatos.php" method="POST" class="form-contenedor">
                 <label>Nombre:</label>
                 <input type="text" name="nombre" required max="10">
                 <label>Apellido</label>
@@ -26,37 +22,32 @@ que procesa el formulario la cantidad de deportes que practica -->
                 <input type="number" name="edad" required>
                 <label>Direccion</label>
                 <input type="text" name="direccion" required max="50">
-                <label>Genero</label>
+                <label>Genero</label>  
                 <select name="genero">
                     <option value="">Seleccione una opcion</option>
                     <option value="F">F</option>
                     <option value="M">M</option>
                     <option value="OTRO">OTRO</option>
                 </select>
-                <label>Nivel de estudios</label>
+                <label>Nivel de estudios</label>  
                 <label for="">Sin estudios</label>
                 <input type="radio" name="est" id="sin_est" value="sin_est" required>
                 <label for="">Primario </label>
                 <input type="radio" name="est" id="est_prim" value="est_prim" required>
                 <label for="">Secundario</label>
-                <input type="radio" name="est" id="est_sec" value="est_sec" required>
+                <input type="radio" name="est" id="est_sec" value="est_sec" required> 
                 <label for="">Universitario</label>
-                <input type="radio" name="est" id="est_uni" value="est_uni" required>
-                <label>Deportes que practica</label> 
-                <input type="checkbox" name="opciones[]" id="fut">Futbol 
-                <input type="checkbox" name="opciones[]" id="bas">Basquet 
-                <input type="checkbox" name="opciones[]" id="ten">Tennis 
-                <input type="checkbox" name="opciones[]" id="pad">Padel 
-                <input type="checkbox" name="opciones[]" id="han">Handball 
-                <input type="checkbox" name="opciones[]" id="otro">Otro  
+                <input type="radio" name="est" id="est_uni" value="est_uni" required>  
 
                 <button type="reset" class="btn-borrar">Limpiar campos</button>
                 <button type="submit" class="btn-enviar">Mostrar datos</button>
-            <a href="/tp1/inicio_tp1.html" class="btn-volver">Volver al índice de ejercicios</a>
+            <a href="/tp1/inicio_tp1.php" class="btn-volver">Volver al índice de ejercicios</a>
             </form>
 
         </div>
     </main>
+    <?php include_once(__DIR__ . '/../estructura/footer.php'); ?>
+
 </body>
 
 </html>

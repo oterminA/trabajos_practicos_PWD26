@@ -1,20 +1,15 @@
-<!DOCTYPE html>
 <!-- Ejercicio 3
 Crear una página php que contenga un formulario HTML como el que se indica en la
 imagen (darle formato con CSS), enviar estos datos por el método Post a otra página php
 que los reciba y muestre por pantalla un mensaje como el siguiente: “Hola, yo soy
 nombre , apellido tengo edad años y vivo en dirección”, usando la información recibida.
 Cambiar el método Post por Get y analizar las diferencias -->
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <title>Ejercicio 4</title>
-</head>
 
 <body>
+    <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
+
     <main class="contenedor-main">
         <div class="contenedor">
             <h1>Ejercicio n° 4</h1>
@@ -30,11 +25,14 @@ Cambiar el método Post por Get y analizar las diferencias -->
                 <input type="text" name="direccion" required max="50">
                 <button type="reset" class="btn-borrar">Limpiar campos</button>
                 <button type="submit" class="btn-enviar">Mostrar datos</button>
-                <a href="/tp1/inicio_tp1.html" class="btn-volver">Volver al índice de ejercicios</a>
+                <a href="/tp1/inicio_tp1.php" class="btn-volver">Volver al índice de ejercicios</a>
             </form>
 
         </div>
     </main>
+    <?php include_once(__DIR__ . '/../estructura/footer.php'); ?>
+
+
 </body>
 
 </html>

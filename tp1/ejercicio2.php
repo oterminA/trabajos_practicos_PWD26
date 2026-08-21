@@ -1,20 +1,15 @@
-<!DOCTYPE html>
 <!-- Ejercicio 2
 Crear una página php que contenga un formulario HTML que permita ingresar las horas
 de cursada, de la materia Programación Web Dinámica, por cada día de la semana.
 Enviar los datos del formulario por el método Get a otra página php que los reciba y
 complete un array unidimensional. Visualizar por pantalla la cantidad total de horas que
 se cursan por semana. -->
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <title>Ejercicio 2</title>
-</head>
 
 <body>
+    <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
+
     <main class="contenedor-main">
         <div class="contenedor">
             <h1>Ejercicio n° 2</h1>
@@ -34,11 +29,13 @@ se cursan por semana. -->
                 <input type="number" required name="horasV" step="0.01"> 
                 <button type="reset" class="btn-borrar">Limpiar campos</button>
                 <button type="submit" class="btn-enviar">Enviar</button>
-            <a href="/tp1/inicio_tp1.html" class="btn-volver"  >Volver al índice de ejercicios</a>
+            <a href="/tp1/inicio_tp1.php" class="btn-volver"  >Volver al índice de ejercicios</a>
             </form>
 
         </div>
     </main>
+    <?php include_once(__DIR__ . '/../estructura/footer.php'); ?>
+
 </body>
 
 </html>

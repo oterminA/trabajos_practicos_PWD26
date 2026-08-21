@@ -15,17 +15,12 @@ $esMayorEdad = esMayor($edad);
 $genero = darGenero($genero); //guardo lo que ya devuelva la variable según la elección desde el html
 $estudios = estudioAlcanzado($estudios); //guardo lo que ya devuelva la variable segun la eleccion desde el html
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <title>Resolucion ejercicio 5</title>
-</head>
 
 <body>
+    <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
+
     <main class="contenedor-main">
         <div class="contenedor">
             <h1>Resolucion</h1>
@@ -41,9 +36,11 @@ $estudios = estudioAlcanzado($estudios); //guardo lo que ya devuelva la variable
                 ?>
                 <p class="resultado">Hola soy <?php echo $nombre . " " .  $apellido ?>, soy <?php echo $texto ?> de edad y vivo en <?php echo $direccion ?>. Me identifico con el genero <?php echo $genero ?> y mi nivel de estudios es <?php echo $estudios ?></p>
             <?php endif; ?>
-            <a href="/tp1/ejercicio5.html" class="btn-volver">Volver atrás</a>
+            <a href="/tp1/ejercicio5.php" class="btn-volver">Volver atrás</a>
         </div>
     </main>
+    <?php include_once(__DIR__ . '/../estructura/footer.php'); ?>
+
 </body>
 
 </html>

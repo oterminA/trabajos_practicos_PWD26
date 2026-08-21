@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <!-- Ejercicio 8
 La empresa de Cine Cinem@s tiene establecidas diferentes tarifas para las entradas, en
 función de la edad y de la condición de estudiante del cliente. Desea que sean los propios
@@ -8,16 +7,12 @@ de 12 años el precio es de $180, en cualquier otro caso el precio es de $300. D
 formulario que solicite la edad y permita ingresar si se trata de un estudiante o no. Con
 un botón enviar los datos a un script encargado de realizar el cálculo y visualizarlo.
 Agregar un botón para limpiar el formulario y volver a consultar. -->
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <title>Ejercicio 8</title>
-</head>
 
 <body>
+    <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
+
     <main class="contenedor-main">
         <div class="contenedor">
             <h1>Ejercicio n° 8</h1>
@@ -33,11 +28,13 @@ Agregar un botón para limpiar el formulario y volver a consultar. -->
 
                 <button type="reset" class="btn-borrar">Limpiar campos</button>
                 <button type="submit" class="btn-enviar">Ver costo de entrada</button>
-                <a href="/tp1/inicio_tp1.html" class="btn-volver">Volver al índice de ejercicios</a>
+                <a href="/tp1/inicio_tp1.php" class="btn-volver">Volver al índice de ejercicios</a>
             </form>
 
         </div>
     </main>
+    <?php include_once(__DIR__ . '/../estructura/footer.php'); ?>
+
 </body>
 
 </html>

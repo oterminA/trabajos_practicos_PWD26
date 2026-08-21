@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <!-- Ejercicio 7
 Crear una página con un formulario que contenga dos input de tipo text y un select. En
 los inputs se ingresarán números y el select debe dar la opción de una operación
@@ -6,16 +5,13 @@ matemática que podrá resolverse usando los números ingresados. En la página 
 procesa la información se debe mostrar por pantalla la operación seleccionada, cada
 uno de los operandos y el resultado obtenido de resolver la operación. Ejemplo del
 formulario -->
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <title>Ejercicio 7</title>
-</head>
 
 <body>
+    <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
+
+
     <main class="contenedor-main">
         <div class="contenedor">
             <h1>Ejercicio n° 7</h1>
@@ -35,11 +31,14 @@ formulario -->
 
                 <button type="reset" class="btn-borrar">Limpiar campos</button>
                 <button type="submit" class="btn-enviar">Ver resultado</button>
-            <a href="/tp1/inicio_tp1.html" class="btn-volver">Volver al índice de ejercicios</a>
+            <a href="/tp1/inicio_tp1.php" class="btn-volver">Volver al índice de ejercicios</a>
             </form>
 
         </div>
     </main>
+    <?php include_once(__DIR__ . '/../estructura/footer.php'); ?>
+
+
 </body>
 
 </html>

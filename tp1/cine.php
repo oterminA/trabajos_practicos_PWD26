@@ -31,7 +31,7 @@ $esEstudiante = $_POST["rta"] ?? '';
                 ?>
             <p class="resultado">El costo de su entrada es de $<?php echo $costo ?></p>
             <?php endif ?>
-            <a href="/tp1/ejercicio8.html" class="btn-volver">Volver atrás</a>
+            <a href="/tp1/ejercicio8.php" class="btn-volver">Volver atrás</a>
         </div>
     </main>
 </body>
