@@ -66,30 +66,30 @@ class cineEj2
      */
     function mostrarDatos($datos)
     {
-        $restriccion = $this->mostrarRestriccion($datos["restriccion"]); //mando la restriccion de edad a la funcion que formatea el texto
-        $genero = $this->mostrarGenero($datos["genero"]);//mando el genero a la funcion que formatea el texto
-        $titulo = $datos["titulo"] ?? '';;
-        $actores = $datos["actores"] ?? '';;
-        $director = $datos["director"] ?? '';;
-        $guion = $datos["guion"] ?? '';;
-        $produccion = $datos["produccion"] ?? '';;
-        $anio = $datos["anio"] ?? '';;
-        $nacionalidad = $datos["nacionalidad"] ?? '';;
-        $duracion = $datos["duracion"] ?? '';;
-        $sinopsis = $datos["sinopsis"] ?? '';;
+        $restriccion = $this->mostrarRestriccion($datos["restriccion"] ?? ''); //mando la restriccion de edad a la funcion que formatea el texto
+        $genero = $this->mostrarGenero($datos["genero"] ?? '');//mando el genero a la funcion que formatea el texto
+        $titulo = $datos["titulo"] ?? '';
+        $actores = $datos["actores"] ?? '';
+        $director = $datos["director"] ?? '';
+        $guion = $datos["guion"] ?? '';
+        $produccion = $datos["produccion"] ?? '';
+        $anio = $datos["anio"] ?? '';
+        $nacionalidad = $datos["nacionalidad"] ?? '';
+        $duracion = $datos["duracion"] ?? '';
+        $sinopsis = $datos["sinopsis"] ?? '';
 
         $mensaje = //armo el string que se devuelve
-            "Titulo: " . $titulo . "<br>" .
-            "Actores: " . $actores . "<br>" .
-            "Director: " . $director . "<br>" .
-            "Guion: " . $guion . "<br>" .
-            "Produccion: " . $produccion . "<br>" .
-            "Año: " . $anio . "<br>" .
-            "Nacionalidad: " . $nacionalidad . "<br>" .
-            "Genero: " . $genero . "<br>" .
-            "Duración: " . $duracion .  " minutos" . "<br>" .
-            "Restriccion por edad: " . $restriccion . "<br>" .
-            "Sinopsis: '" . $sinopsis . "'" . "<br>";
+            "<b>Titulo</b>: " . $titulo . "<br>" .
+            "<b>Actores</b>: " . $actores . "<br>" .
+            "<b>Director</b>: " . $director . "<br>" .
+            "<b>Guión</b>: " . $guion . "<br>" .
+            "<b>Producción</b>: " . $produccion . "<br>" .
+            "<b>Año</b>: " . $anio . "<br>" .
+            "<b>Nacionalidad</b>: " . $nacionalidad . "<br>" .
+            "<b>Genero</b>: " . $genero . "<br>" .
+            "<b>Duración</b>: " . $duracion .  " minutos" . "<br>" .
+            "<b>Restricción por edad</b>: " . $restriccion . "<br>" .
+            "<b>Sinopsis</b>: '" . $sinopsis . "'" . "<br>";
         return $mensaje;
     }
 }
