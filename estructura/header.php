@@ -7,6 +7,7 @@
     <title>Ejercicios</title>
 </head>
 <body>
+    <?php include_once(__DIR__ . '/../configuracion/funciones.php'); ?>
     <header class="header-container">
         <p id="p-header">Programación Web Dinámica</p>
     </header>

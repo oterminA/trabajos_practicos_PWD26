@@ -1,7 +1,14 @@
 <?php
 ///
 //este es un archivo para guardar funciones auxiliares que se repiten en distintos scritps
+//lo tengo que incluir en los actions y en el header/footer
 ///
+
+$ROOT = realpath(__DIR__ . '/..') . '/';
+
+if (!defined('ROOT')) {
+    define('ROOT', $ROOT);
+}
 
 /**
  * esta funcion se usa para saber si alguien es mayor de edad.
@@ -118,37 +125,57 @@ function hacerOperacion($operacion, $numeroA, $numeroB)
  * esta funcion trae los datos del post/get y los recorre
 */
 
-function data_submitted() {
-    $_AAux= array();
-    if (!empty($_POST))
-        $_AAux =$_POST;
-    else
-        if(!empty($_GET)) {
-            $_AAux =$_GET;
-        }
-    if (count($_AAux)){
-        foreach ($_AAux as $indice => $valor) {
-            if (is_string($valor)) {
-                $_AAux[$indice] = trim($valor);
-            }
+function data_submitted()
+{
+    $datos = [];
+
+    if (!empty($_POST)) {
+        $datos = $_POST;
+    } elseif (!empty($_GET)) {
+        $datos = $_GET;
+    } //evaluo si vienen por post o get
+
+    foreach ($datos as $clave => $valor) {
+        $datos[$clave] = ($valor === "") ? null : $valor;
+    }
+
+    if (!empty($_FILES)) { //para poder usarla con ls ejercicios que tienen archivos
+        foreach ($_FILES as $clave => $archivo) {
+            $datos[$clave] = $archivo;
         }
     }
-    return $_AAux;
+
+    return $datos; //retorno los datos del arreglo en un array con la clve siendo el name de la etiqueta y el valor siendo el contenido
 }
 
 /**
  * esta funcion carga dinamicamente las clases a los scripts
 */
-spl_autoload_register(function ($clase) {
-    $directorys = array(
-        $GLOBALS['ROOT'].'control/',
-    );
-    foreach($directorys as $directory){
-        if(file_exists($directory.$clase . '.php')){
-            require_once($directory.$clase . '.php');
+spl_autoload_register(function ($className) {
+    $directorios = [
+        // ROOT . 'Modelo/',
+        // ROOT . 'Modelo/TP4/',
+        // ROOT . 'Modelo/TP4/conector/', 
+
+        // ROOT . 'Modelo/TP5/',
+        // ROOT . 'Modelo/TP5/conector/', 
+        
+        ROOT . 'control/',
+        // ROOT . 'Control/TP5/',
+        // ROOT . 'Control/TP4/',
+    ];
+
+    foreach ($directorios as $directorio) {
+        $archivo = $directorio . $className . '.php';
+        $archivo = str_replace('\\', '/', $archivo);
+        
+        if (file_exists($archivo)) {
+            require_once $archivo;
             return;
         }
     }
-
-
+    if (php_sapi_name() === 'cli') {
+        echo "Autoload: No se encontró la clase '$className'.\n";
+        echo "Buscando en: " . ROOT . "\n";
+    }
 });

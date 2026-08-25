@@ -6,9 +6,9 @@
 
 body {
     background: #3a0303;
-    /* background-image: url(/css/assets/fondo.jpg);
-    background-repeat: repeat-x; */
-
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .contenedor-main {
@@ -21,6 +21,7 @@ body {
 
 h1 {
     text-align: center;
+    margin: 5px;
 }
 
 .error {
@@ -40,15 +41,19 @@ h1 {
 
 .contenedor {
     /*esta clase es para los contenedores generales, onda de los formularios y demás*/
-    padding: 20px;
+    padding: 10px;
     width: max-content;
     background-color: #FEFBEA;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .form-contenedor {
     /*esta clase es para los contenedores generales, onda de los formularios y demás*/
-    padding: 20px;
+    padding: 10px;
     background-color: #FEFBEA;
     border-radius: 5px;
     display: flex;
@@ -87,13 +92,14 @@ h1 {
     background-color: #612424;
 }
 
+.btn,
 .btn-enviar,
 .btn-volver,
 .btn-guardar,
 .btn-borrar {
     border-radius: 5px;
     padding: 7px;
-    margin: 10px;
+    margin: 5px;
 }
 
 .btn-enviar {
@@ -165,11 +171,11 @@ input[type="number"] {
 
 .footer-container,
 .header-container {
-    background-color:#FEFBEA;
+    background-color: #FEFBEA;
 }
 
 .header-container {
-    height: 6vh;
+    height: 8vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -187,4 +193,9 @@ input[type="number"] {
 #p-footer {
     color: #3a0303;
     text-align: center;
+}
+
+/* elementos de BOOTSTRAP */
+.container{
+    flex: 1; /*esto hace que el container siempre ocupe el espcio sobrante*/
 }
