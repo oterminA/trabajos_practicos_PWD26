@@ -1,0 +1,26 @@
+****************************************************************
+**Este es un archivo donde se detalla un poco lo que hay que tener en cuenta al mandar archivos al servidor**
+****************************************************************
+
+
+1. evitar acceder directamente a superglobales ($_FILES o $_POST) dentro del Control.
+
+2. la capa de Control debe procesar únicamente el array $datos, no usar $_files.
+
+3. validar siempre $archivo['error'] === UPLOAD_ERR_OK antes de manipular cualquier propiedad del archivo.
+
+4.implementar una estructura (como un switch) para traducir los códigos de error de PHP (UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_PARTIAL, etc.) en mensajes legibles para el usuario.
+
+5. validar el peso en bytes ($archivo['size']) antes de guardar el archivo para evitar saturar el servidor.
+
+6. no confiar únicamente de la extensión ni del tipo devuelto por el navegador ($archivo['type']). Usar mime_content_type($archivo['tmp_name']) o la extensión finfo para verificar el contenido real del archivo.
+
+7. limpiar el nombre original usando basename() para prevenir ataques de Directory Traversal. Para obtener el nombre sin extensión o manipularla, utilizar pathinfo($nombre, PATHINFO_FILENAME) en lugar de operaciones fijas de cadenas como substr()
+
+8. construir rutas absolutas basadas en la raíz del proyecto (usando $GLOBALS['ROOT'] o __DIR__).
+
+9. verificar la existencia de la carpeta de destino (is_dir()) y procurar crearla dinámicamente (mkdir($ruta, 0777, true)) si no existe, en lugar de retornar un error inmediatamente.
+
+10. usar únicamente move_uploaded_file($tmp_name, $destino) para mover archivos subidos. Esta función valida internamente que el archivo realmente provenga de una carga HTTP POST legítima.
+
+11. evitar retornar simples valores booleanos si la Vista necesita dar retroalimentación detallada. Es recomendable devolver un array asociativo con el estado del proceso ('exito' => true/false), un mensaje explicativo y, si corresponde, la ruta relativa resultante para que la Vista arme el enlace final.

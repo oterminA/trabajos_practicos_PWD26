@@ -1,8 +1,11 @@
 <?php
 include_once(__DIR__ . '/../configuracion/funciones.php'); //cargo las funciones que voy a ir usando
 $datos = data_submitted(); //traigo los datos del formulario
-$controlUsuario = new usuarioEj1; //hago una instancia del usuario
-$encontrado = $controlUsuario->usuarioExistente($datos); //recupero el boolean de esa funcion
+$controlArchivo = new archivoEj3;
+$subiendoArchivo = $controlArchivo->recibirArchivo($datos); //acá se guarad un array con un boolean, mensaje y link a donde se guardó
+$fueSubido = $subiendoArchivo['exito']; //recupero el valor boolean(true se subió)
+$linkArchivo = $subiendoArchivo['link'];
+$mensaje = $subiendoArchivo['mensaje'];
 ?>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -12,21 +15,26 @@ $encontrado = $controlUsuario->usuarioExistente($datos); //recupero el boolean d
 <body>
     <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
 
-    <div class="container my-4 w-auto h-auto">
+    <div class="container card my-4 w-auto h-auto">
         <div class="card-header">
-            <h1>Resolucion ejercicio 1</h1>
+            <h1>Resolucion ejercicio 3</h1>
         </div>
-        <div class="card-body">
-            <?php if ($encontrado): ?>
+
+        <div class="card-body ">
+            <?php if ($fueSubido): ?>
                 <div class="alert alert-success" role="alert">
-                    Usuario correcto.
+                    <p class="mb-2"><?php echo $mensaje; ?></p>
+                    <a href="<?php echo $linkArchivo; ?>" target="_blank" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"">Ver archivo</a>
                 </div>
             <?php else: ?>
                 <div class="alert alert-danger" role="alert">
-                    Usuario incorrecto.
+                    <p class="mb-2"><?php echo $mensaje; ?></p>
                 </div>
+
             <?php endif; ?>
-            <a href="/tp2/ejercicio1.php" class="btn-volver">Volver atrás</a>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <a href="../tp2/ejercicio3.php" class="btn btn-secondary">Volver</a>
         </div>
     </div>
     <?php include_once(__DIR__ . '/../estructura/footer.php'); ?>

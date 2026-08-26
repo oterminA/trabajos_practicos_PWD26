@@ -13,7 +13,10 @@ $mensaje = $controlCine->mostrarDatos($datos); //mando los datos del formulario 
     <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
 
     <div class="container alert alert-success my-4 w-auto h-auto" role="alert">
+        <div class="card-header">
         <h1>Resolucion ejercicio 2</h1>
+        </div>
+
         <div class="card-body">
             <h5 class="text-primary">La pelicula introducida es:</h5>
             <p class="card-text">
@@ -23,7 +26,7 @@ $mensaje = $controlCine->mostrarDatos($datos); //mando los datos del formulario 
             </p>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-            <a href="/tp2/inicio_tp2.php" class="btn btn-secondary">Volver</a>
+            <a href="../tp2/ejercicio2.php" class="btn btn-secondary">Volver</a>
         </div>
     </div>
     <?php include_once(__DIR__ . '/../estructura/footer.php'); ?>
