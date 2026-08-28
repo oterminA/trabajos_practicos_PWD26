@@ -153,16 +153,7 @@ function data_submitted()
 */
 spl_autoload_register(function ($className) {
     $directorios = [
-        // ROOT . 'Modelo/',
-        // ROOT . 'Modelo/TP4/',
-        // ROOT . 'Modelo/TP4/conector/', 
-
-        // ROOT . 'Modelo/TP5/',
-        // ROOT . 'Modelo/TP5/conector/', 
-        
         ROOT . 'control/',
-        // ROOT . 'Control/TP5/',
-        // ROOT . 'Control/TP4/',
     ];
 
     foreach ($directorios as $directorio) {
