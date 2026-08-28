@@ -14,7 +14,7 @@ $encontrado = $controlUsuario->usuarioExistente($datos); //recupero el boolean d
 
     <div class="container my-4 w-auto h-auto">
         <div class="card-header">
-            <h1>Resolucion ejercicio 1</h1>
+            <h1>Resolucion ejercicio n° 1</h1>
         </div>
         <div class="card-body">
             <?php if ($encontrado): ?>

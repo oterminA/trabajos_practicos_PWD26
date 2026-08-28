@@ -17,7 +17,7 @@ $mensaje = $subiendoArchivo['mensaje'];
 
     <div class="container card my-4 w-auto h-auto">
         <div class="card-header">
-            <h1>Resolucion ejercicio 4</h1>
+            <h1>Resolucion ejercicio n° 4</h1>
         </div>
 
         <div class="card-body ">

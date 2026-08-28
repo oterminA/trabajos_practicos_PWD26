@@ -10,13 +10,18 @@ textarea-->
     <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
     <div class="container my-4 w-auto h-auto">
         <div class="card shadow-sm">
-            <div class="card-header bg-light border-bottom text-warning fw-bold fs-5">
-                <i class="bi bi-upload"></i> Subir archivo
+            <div class="card-header ">
+                <h1>Ejercicio n° 4</h1>
             </div>
             <div class="card-body p-4">
+                <div>
+                    <h4 class="text-warning fw-bold fs-5"><i class="bi bi-upload"></i> Subir archivo</h4>
+
+                </div>
+
                 <form action="subirTextoPlano.php" method="POST" class="row g-3" onsubmit="return validarArchivo()" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <p class="fw-semibold text-center">El archivo tiene que ser un texto plano '.txt'</p>
+                        <p class="fw-semibold">El archivo tiene que ser un texto plano '.txt'</p>
                         <input class="form-control archivo" type="file" name="archivo" required accept=".txt, text/plain">
                         <!-- si pongo el accept es necesario validar con js que sea ese formato? -->
                     </div>

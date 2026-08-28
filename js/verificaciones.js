@@ -15,6 +15,12 @@ function noRepetir() {
     }
 }
 
+//para lo del tooltip en el h2
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
 function validarAnio() {
     let bien = true;
     let inputAnio = document.querySelector(".anio");

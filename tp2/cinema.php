@@ -14,7 +14,7 @@ $mensaje = $controlCine->mostrarDatos($datos); //mando los datos del formulario 
 
     <div class="container alert alert-success my-4 w-auto h-auto" role="alert">
         <div class="card-header">
-        <h1>Resolucion ejercicio 2</h1>
+        <h1>Resolucion ejercicio n° 2</h1>
         </div>
 
         <div class="card-body">
