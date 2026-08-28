@@ -1,33 +1,20 @@
 <?php
-//revisar el archivo txt en configuración sobre cosas a tener en cuenta con archivos y subidas
-
-/*PREGUNTA: es necesario hacer eso que hizo la profe de:
-private function directorioUploads()
-    {
-        return $GLOBALS['ROOT'] . "uploads/";
-    }
-        
-o hacer lo de: 
- private function mensajeErrorUpload($codigo, $tipoArchivo)
- ?
-*/
-class archivoEj3
-{
-    /** 
+class textoEj4{
+       /** 
      * esta funcion recibe y controla un archivo pdf o doc subido por un formulario
      * recibe un array o un archivo pdf/doc
      * retorna strings
      */
-    function recibirArchivo($datos)
+    function recibirTexto($datos)
     {
         $respuesta = [ //array que muestra el link al archivo, el mensaje según el exito y el boolean de exito para saber de una que pasó
             'exito' => false,
             'mensaje' => '',
-            'contenido' => ''
+            'link' => ''
         ];
 
         //revisar que el archivo llegó 
-        if (!isset($datos['archivo']) || empty($datos['archivo']['name'])) { //reviso si es null el contenido de archivos y si no está vacío
+        if (!isset($datos['archivo']) || empty($datos['archivo']['name'])) { //reviso si no es null el contenido de archivos y si no está vacío
             $respuesta['mensaje'] = "ERROR: No se recibió ningún archivo."; //si lo es guardo ese texto en el array
         }
 
@@ -35,7 +22,7 @@ class archivoEj3
 
         //revisar erroers nativos de php cuando se sube el archivo
         if ($archivo['error'] !== UPLOAD_ERR_OK) { //acá me fijo si el codigo de error es distinto de cero(si no lo es significa que hubo error porque cuando falla 'error' me da cero y lo siguiente es un codigo que significa cero)
-            $respuesta['mensaje'] = "ERROR."; //acá guardo en el array el mensaje de error + el codigo de error traducido
+            $respuesta['mensaje'] = "ERROR: ocurrió un error."; //acá guardo en el array el mensaje de error + el codigo de error traducido
         }
 
         // revisar el tamaño del archivo en este caso es de 2mb el maximo
@@ -47,9 +34,7 @@ class archivoEj3
         //revisar la extensión del archivo, no confiar en la extension
         $extension = mime_content_type($archivo['tmp_name']);
         $extPermitidas = [ //acá busco la extension dela archivo subido usando la ruta temporal porque todavia no está subido a la definitiva
-            'application/pdf',
-            'application/msword' // esto es .doc
-            // 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' // .docx (opcional)
+            'text/plain' // esto es .txt
         ];
 
         if (!in_array($extension, $extPermitidas, true)) { //acá reviso si la extensión del archivo NO está dentro de las permititidas
@@ -67,19 +52,20 @@ class archivoEj3
         }
 
         $rutaAbsolutaDestino = $directorioDestino . $nombreOriginal; //acá guardo el lugar donde va a quedar el archivo y el nombre que vino cuando se subió
+        $rutaRelativaLink = "../uploads/" . $nombreOriginal; 
 
         //mover el archivo
         if (move_uploaded_file($archivo['tmp_name'], $rutaAbsolutaDestino)) { 
             //configuro los arreglos si todo salió bien
             $respuesta['exito'] = true; 
             $respuesta['mensaje'] = "Subido al servidor";
-            $respuesta['contenido'] =  file_get_contents($rutaAbsolutaDestino);
+            $respuesta['link'] = $rutaRelativaLink;
         } else { //si no se pudo mover a la ubicacion final guardo el mensaje de error
             $respuesta['mensaje'] = "ERROR: No se pudo guardar el archivo en el servidor.";
         }
 
         return $respuesta; //retorno el arreglo con las respuestas necesarias
     }
-
-
 }
+
+?>

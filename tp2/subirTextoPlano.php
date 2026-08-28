@@ -4,7 +4,7 @@ $datos = data_submitted(); //traigo los datos del formulario
 $controlArchivo = new archivoEj3;
 $subiendoArchivo = $controlArchivo->recibirArchivo($datos); //acá se guarad un array con un boolean, mensaje y link a donde se guardó
 $fueSubido = $subiendoArchivo['exito']; //recupero el valor boolean(true se subió)
-$linkArchivo = $subiendoArchivo['link'];
+$contenidoTexto = htmlspecialchars($subiendoArchivo['contenido']);
 $mensaje = $subiendoArchivo['mensaje'];
 ?>
 
@@ -17,30 +17,30 @@ $mensaje = $subiendoArchivo['mensaje'];
 
     <div class="container card my-4 w-auto h-auto">
         <div class="card-header">
-            <h1>Resolucion ejercicio 3</h1>
+            <h1>Resolucion ejercicio 4</h1>
         </div>
 
         <div class="card-body ">
             <?php if ($fueSubido): ?>
                 <div class="alert alert-success" role="alert">
                     <p class="mb-2"><?php echo $mensaje; ?></p>
-
                 </div>
                 <div class="alert alert-secondary" role="alert">
-                    <a href="<?php echo $linkArchivo; ?>" target="_blank" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"">Ver archivo</a>
+                    <p class="mb-2 fw-bold fs-5 text-decoration-underline">El contenido del archivo subido es: </p>
+                    <p class="mb-2"><?php echo $contenidoTexto; ?></p>
                 </div>
-             
-                </div>
-            <?php else: ?>
-                <div class=" alert alert-danger" role="alert">
-                        <p class="mb-2"><?php echo $mensaje; ?></p>
-                </div>
+        </div>
+    <?php else: ?>
+        <div class="alert alert-danger" role="alert">
+            <p class="mb-2"><?php echo $mensaje; ?></p>
+        </div>
 
-            <?php endif; ?>
-        </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-            <a href="../tp2/ejercicio3.php" class="btn btn-secondary">Volver</a>
-        </div>
+    <?php endif; ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+        <a href="../tp2/ejercicio4.php" class="btn btn-secondary">Volver</a>
+    </div>
+    </div>
+
     </div>
     <?php include_once(__DIR__ . '/../estructura/footer.php'); ?>
 

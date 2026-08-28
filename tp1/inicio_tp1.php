@@ -29,7 +29,7 @@
                     <a href="/tp1/ejercicio5.php"  >Ejercicio 5</a>
                 </div>
                 <div class="mini-contenedor">
-                    <a href="/tp1/ejercicio6.html"  >Ejercicio 6</a>
+                    <a href="/tp1/ejercicio6.php"  >Ejercicio 6</a>
                 </div>
             </div>
             <div class="contenedor-de-mini">

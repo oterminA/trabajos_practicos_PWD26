@@ -43,9 +43,29 @@ function validarArchivo() {
         if (file.size > tamanio) {
             error.textContent = "El tamaño del archivo no puede superar los 2mb";
             bien = false;
-        }else{
+        } else {
             error.textContent = " ";
         }
     }
     return bien;
+}
+
+
+function validarImagen() {
+    //valido el tamaño de la imagen
+    let bien = true;
+    let archivo = document.querySelector(".portada");
+    let textoImagen = document.querySelector(".textoImagen");
+    let tamanio = 300 * 1024; //o sea los 300kb
+    textoImagen.textContent = "";
+    if (archivo.files.length > 0) {
+        let file = archivo.files[0];
+
+        if (file.size > tamanio) {
+            textoImagen.textContent = "El tamaño de la imagen no puede superar los 300KB";
+            bien = false;
+        } else {
+            textoImagen.textContent = " ";
+        }
+    }
 }
