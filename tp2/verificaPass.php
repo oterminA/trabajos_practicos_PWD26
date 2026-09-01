@@ -12,8 +12,8 @@ $encontrado = $controlUsuario->usuarioExistente($datos); //recupero el boolean d
 <body>
     <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
 
-    <div class="container my-4 w-auto h-auto">
-        <div class="card-header">
+    <div class="container card my-4 w-25">
+        <div class="card-header" >
             <h1>Resolucion ejercicio n° 1</h1>
         </div>
         <div class="card-body">

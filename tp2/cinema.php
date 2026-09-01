@@ -12,7 +12,7 @@ $mensaje = $controlCine->mostrarDatos($datos); //mando los datos del formulario 
 <body>
     <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
 
-    <div class="container alert alert-success my-4 w-auto h-auto" role="alert">
+    <div class="container card my-4 w-25 alert alert-success" role="alert">
         <div class="card-header">
         <h1>Resolucion ejercicio n° 2</h1>
         </div>

@@ -24,14 +24,16 @@ coinciden con alguno de los almacenados en el arreglo y en caso contrario un men
                         <span class=" input-group-text">
                             <i class="bi bi-person-fill"></i>
                         </span>
-                        <input type="text" class="form-control usuario" id="exampleFormControlInput1" name="usuario" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{3,10}" minlength="3" maxlength="10" placeholder="Username">
+                        <input type="text" class="form-control usuario" id="exampleFormControlInput1" name="usuario" required minlength="3" maxlength="10" placeholder="Username">
+                        <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{3,10}"  -->
                     </div>
 
                     <div class="input-group mb-3">
                         <span class=" input-group-text">
                             <i class="bi bi-lock-fill"></i>
                         </span>
-                        <input type="password" id="inputPassword6" class="form-control clave" aria-describedby="passwordHelpInline" name="clave" required minlength="8" pattern="[A-Za-z0-9]" placeholder="Password">
+                        <input type="password" id="inputPassword6" class="form-control clave" aria-describedby="passwordHelpInline" name="clave" required minlength="8"  placeholder="Password">
+                        <!-- pattern="[A-Za-z0-9]" -->
                     </div>
 
                     <span class="form-text">

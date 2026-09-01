@@ -1,8 +1,8 @@
 <?php
 include_once(__DIR__ . '/../configuracion/funciones.php'); //cargo las funciones que voy a ir usando
 $datos = data_submitted(); //traigo los datos del formulario
-$controlArchivo = new archivoEj3;
-$subiendoArchivo = $controlArchivo->recibirArchivo($datos); //acá se guarad un array con un boolean, mensaje y link a donde se guardó
+$controlArchivo = new textoEj4;
+$subiendoArchivo = $controlArchivo->recibirTexto($datos); //acá se guarad un array con un boolean, mensaje y link a donde se guardó
 $fueSubido = $subiendoArchivo['exito']; //recupero el valor boolean(true se subió)
 $contenidoTexto = htmlspecialchars($subiendoArchivo['contenido']);
 $mensaje = $subiendoArchivo['mensaje'];

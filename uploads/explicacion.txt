@@ -1,0 +1,6 @@
+
+*La idea es que el funcionamiento de los ejercicios se divida por partes:
+
+>Control: tiene funciones(alta, baja, modificacion) y llama al modelo. El action le pasa información a funciones especificas para obtener una respuesta y devolverla a la vista(usuario).El resto de las partes no acceden al modelo. 
+>Modelo: conecta directamente con la base de datos y pasa informacion al control de las clases del objeto modelo relacional.
+>Vista: es lo que se le muestra al usuario. Son scripts en html que arman lo visual para el user, reciben entradas, necesitan informacion del control pero no acceden directamente sino que los datos del formulario lo mandan a un action y este es el que le manda ese paquete de información al control para despues enviar datos al usuario.

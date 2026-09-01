@@ -23,7 +23,7 @@ class archivoEj3
         $respuesta = [ //array que muestra el link al archivo, el mensaje según el exito y el boolean de exito para saber de una que pasó
             'exito' => false,
             'mensaje' => '',
-            'contenido' => ''
+            'link' => ''
         ];
 
         //revisar que el archivo llegó 
@@ -49,7 +49,6 @@ class archivoEj3
         $extPermitidas = [ //acá busco la extension dela archivo subido usando la ruta temporal porque todavia no está subido a la definitiva
             'application/pdf',
             'application/msword' // esto es .doc
-            // 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' // .docx (opcional)
         ];
 
         if (!in_array($extension, $extPermitidas, true)) { //acá reviso si la extensión del archivo NO está dentro de las permititidas
@@ -67,13 +66,14 @@ class archivoEj3
         }
 
         $rutaAbsolutaDestino = $directorioDestino . $nombreOriginal; //acá guardo el lugar donde va a quedar el archivo y el nombre que vino cuando se subió
+        $rutaRelativaLink = "../uploads/" . $nombreOriginal; 
 
         //mover el archivo
         if (move_uploaded_file($archivo['tmp_name'], $rutaAbsolutaDestino)) { 
             //configuro los arreglos si todo salió bien
             $respuesta['exito'] = true; 
             $respuesta['mensaje'] = "Subido al servidor";
-            $respuesta['contenido'] =  file_get_contents($rutaAbsolutaDestino);
+            $respuesta['link'] = $rutaRelativaLink;
         } else { //si no se pudo mover a la ubicacion final guardo el mensaje de error
             $respuesta['mensaje'] = "ERROR: No se pudo guardar el archivo en el servidor.";
         }

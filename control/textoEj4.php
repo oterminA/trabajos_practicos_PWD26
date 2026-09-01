@@ -1,6 +1,7 @@
 <?php
-class textoEj4{
-       /** 
+class textoEj4
+{
+    /** 
      * esta funcion recibe y controla un archivo pdf o doc subido por un formulario
      * recibe un array o un archivo pdf/doc
      * retorna strings
@@ -10,8 +11,9 @@ class textoEj4{
         $respuesta = [ //array que muestra el link al archivo, el mensaje según el exito y el boolean de exito para saber de una que pasó
             'exito' => false,
             'mensaje' => '',
-            'link' => ''
+            'contenido' => ''
         ];
+
 
         //revisar que el archivo llegó 
         if (!isset($datos['archivo']) || empty($datos['archivo']['name'])) { //reviso si no es null el contenido de archivos y si no está vacío
@@ -52,14 +54,13 @@ class textoEj4{
         }
 
         $rutaAbsolutaDestino = $directorioDestino . $nombreOriginal; //acá guardo el lugar donde va a quedar el archivo y el nombre que vino cuando se subió
-        $rutaRelativaLink = "../uploads/" . $nombreOriginal; 
 
         //mover el archivo
-        if (move_uploaded_file($archivo['tmp_name'], $rutaAbsolutaDestino)) { 
+        if (move_uploaded_file($archivo['tmp_name'], $rutaAbsolutaDestino)) {
             //configuro los arreglos si todo salió bien
-            $respuesta['exito'] = true; 
+            $respuesta['exito'] = true;
             $respuesta['mensaje'] = "Subido al servidor";
-            $respuesta['link'] = $rutaRelativaLink;
+            $respuesta['contenido'] =  file_get_contents($rutaAbsolutaDestino);
         } else { //si no se pudo mover a la ubicacion final guardo el mensaje de error
             $respuesta['mensaje'] = "ERROR: No se pudo guardar el archivo en el servidor.";
         }
@@ -67,5 +68,3 @@ class textoEj4{
         return $respuesta; //retorno el arreglo con las respuestas necesarias
     }
 }
-
-?>

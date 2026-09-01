@@ -20,41 +20,37 @@ $fichaTecnica = $controlCine->mostrarDatos($datos); //mando los datos del formul
     <?php include_once(__DIR__ . '/../estructura/header.php'); ?>
 
 
-    <div class="container my-4">
-        <div class="card">
-            <div class="card-header">
-                <h1>Resolución Ejercicio n° 5</h1>
-            </div>
+    <div class="container card my-4 w-auto alert alert-success" role="alert">
+        <div class="card-header">
+            <h1>Resolución Ejercicio n° 5</h1>
+        </div>
 
-            <div class="card-body " >
-                <?php if ($fueSubida): ?>
-                    <div class="card mb-3 alert alert-success" role="alert">
-                        <div class="row g-0 align-items-center">
+        <div class="card-body ">
+            <?php if ($fueSubida): ?>
+                <div class="row g-0 align-items-center">
 
-                            <div class="col-md-4 text-center p-2">
-                                <img src="<?php echo $contenido; ?>" class="img-fluid rounded-1" alt="portada de la película" style="max-height: 350px; width: 100%; object-fit: cover;">
+                    <div class="col-md-4 text-center p-2">
+                        <img src="<?php echo $contenido; ?>" class="img-fluid rounded-1" alt="portada de la película" style="max-height: 350px; width: 100%; object-fit: cover;">
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h4 class="card-title fw-bold">La película elegida es:</h4>
+                            <div class="card-text">
+                                <?php echo $fichaTecnica; ?>
                             </div>
-
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h4 class="card-title fw-bold">La película elegida es:</h4>
-                                    <div class="card-text">
-                                        <?php echo $fichaTecnica; ?>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
-                <?php else: ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?php echo $mensaje; ?>
-                    </div>
-                <?php endif; ?>
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-3">
-                    <a href="../tp2/ejercicio5.php" class="btn btn-secondary">Volver</a>
                 </div>
+            <?php else: ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $mensaje; ?>
+                </div>
+            <?php endif; ?>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-3">
+                <a href="../tp2/ejercicio5.php" class="btn btn-secondary">Volver</a>
             </div>
         </div>
     </div>
