@@ -20,6 +20,12 @@ switch ($accion) {
     case 'guardar':
         $controller->guardar();
         break;
+    case 'mostrarDatosEdicion':
+        $controller->mostrarDatosEdicion();
+        break;
+    case 'guardarDatosEditados':
+        $controller->guardarDatosEditados();
+        break;
     default:
         http_response_code(404);
         echo 'Acción no válida';

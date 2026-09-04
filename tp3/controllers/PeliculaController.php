@@ -108,4 +108,69 @@ class PeliculaController
         header('Location: index.php?action=listar');
         exit;
     }
+
+    /**
+     * esta funcion consulta al modelo y trae los datos existentes de la pelicula que se quiere editar
+     */
+    public function mostrarDatosEdicion()
+    {
+        $id = isset($_GET['id']) ? (int) $_GET['id'] : 0; //recupero el id de la peli
+        $pelicula = $this->modelo->obtenerPorId($id); //busco en el modelo los datos de esa pelicula y los guardo aca para mostrar en la vista
+        require __DIR__ . '/../views/editar.php';
+    }
+
+
+    /**
+     * esta funcion recibe los nuevos y opcionales datos y los manda al modelo para modificar el json
+     */
+    public function guardarDatosEditados()
+    {
+        //REVISAR QUE HAY DATOS EN ESTA FUNCION Y EN LA DE GUARDAR QUE PUEDEN MODULARIZARSE(verificar año, validar la imagen, etc)
+        $errores = [];
+        $datos = [
+            'id' => $_POST['id'],
+            'titulo' => trim($_POST['titulo']),
+            'genero' => trim($_POST['genero']),
+            'anio' => trim($_POST['anio']),
+            'descripcion' => trim($_POST['descripcion']),
+        ];
+        $anio = filter_var($datos['anio'], FILTER_VALIDATE_INT);
+        $max = (int) date('Y') + 5;
+
+        if ($anio === false || $anio < 1895 || $anio > $max) {
+            $errores[] = "El año debe estar entre 1895 y {$max}.";
+        }
+
+        $imagen = $_FILES['imagen'] ?? null;
+        $tipo = null;
+
+        if ($imagen['size'] > 2 * 1024 * 1024) {
+            $errores[] = 'La imagen no puede superar los 2 MB.';
+        }
+
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $tipo = $finfo->file($imagen['tmp_name']);
+
+        if (!in_array($tipo, ['image/jpeg', 'image/png', 'image/webp'], true)) {
+            $errores[] = 'El archivo debe ser JPG, PNG o WEBP.';
+        }
+
+        if ($errores) {
+            require __DIR__ . '/../views/editar.php';
+        } else {
+            $nombreImagen = $this->modelo->guardarImagen($imagen, $tipo);
+
+            $this->modelo->editarExistentes([
+                'id' => $datos['id'],
+                'titulo' => $datos['titulo'],
+                'genero' => $datos['genero'],
+                'anio' => $anio,
+                'descripcion' => $datos['descripcion'],
+                'imagen' => $nombreImagen,
+            ]);
+
+            header('Location: index.php?action=listar');
+            exit;
+        }
+    }
 }

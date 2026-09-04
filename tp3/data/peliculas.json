@@ -30,5 +30,13 @@
         "descripcion": "La mejor pelicula del mundo.",
         "imagen": "pelicula_6a9ad567485189.09092360.jpg",
         "id": 4
+    },
+    {
+        "titulo": "El gran pez",
+        "genero": "Ciencia ficcion",
+        "anio": 2003,
+        "descripcion": "Un hijo intenta conocer la verdadera historia de su padre.",
+        "imagen": "pelicula_6a9b1935af9296.11292354.jpg",
+        "id": 5
     }
 ]

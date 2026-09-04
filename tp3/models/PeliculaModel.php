@@ -85,4 +85,34 @@ class PeliculaModel
             LOCK_EX
         );
     }
+
+
+    /**
+     * esta funcion edita los datos de la pelicula deseada
+     */
+    public function editarExistentes($arreglo)
+    {
+        $peliculas = $this->obtenerDatos(); //traigo el arreglo completo de peliculas
+        $id = $arreglo['id'];
+        $titulo = $arreglo['titulo'];
+        $genero = $arreglo['genero'];
+        $anio = $arreglo['anio'];
+        $descripcion = $arreglo['descripcion'];
+        $imagen = $arreglo['imagen'];
+
+        foreach ($peliculas as $pelicula) {
+            if ($pelicula['id'] === $id) {
+                $pelicula['titulo'] = $titulo;
+                $pelicula['genero'] = $genero;
+                $pelicula['anio'] = $anio;
+                $pelicula['descripcion'] = $descripcion;
+                $pelicula['imagen'] = $imagen;
+            }
+        }
+        file_put_contents(
+            $this->archivo,
+            json_encode($peliculas, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
+            LOCK_EX
+        );
+    }
 }
