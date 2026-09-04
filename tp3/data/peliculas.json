@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "titulo": "Volver al futuro",
+        "genero": "Ciencia ficción",
+        "anio": 1985,
+        "descripcion": "Marty McFly viaja accidentalmente al pasado.",
+        "imagen": null
+    },
+    {
+        "id": 2,
+        "titulo": "Matrix",
+        "genero": "Ciencia ficción",
+        "anio": 1999,
+        "descripcion": "Un programador descubre que la realidad no es lo que parece.",
+        "imagen": null
+    },
+    {
+        "id": 3,
+        "titulo": "El gran pez",
+        "genero": "Drama",
+        "anio": 2003,
+        "descripcion": "Un hijo intenta conocer la verdadera historia de su padre.",
+        "imagen": null
+    },
+    {
+        "titulo": "Orgullo y Prejuicio",
+        "genero": "Drama",
+        "anio": 2005,
+        "descripcion": "La mejor pelicula del mundo.",
+        "imagen": "pelicula_6a9ad567485189.09092360.jpg",
+        "id": 4
+    }
+]

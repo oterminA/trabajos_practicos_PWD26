@@ -14,7 +14,7 @@
                         <a href="/tp2/inicio_tp2.php">Trabajo práctico 2</a>
                     </div>
                     <div class="mini-contenedor">
-                        <a href="#">No hay tp aún</a>
+                        <a href="/tp3/index.php">Trabajo práctico 3</a>
                     </div>
                     <div class="mini-contenedor">
                         <a href="#">No hay tp aún</a>
