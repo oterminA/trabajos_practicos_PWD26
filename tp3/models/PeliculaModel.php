@@ -89,30 +89,32 @@ class PeliculaModel
 
     /**
      * esta funcion edita los datos de la pelicula deseada
+     * recibe un arreglo con los datos editados de la pelicula
      */
     public function editarExistentes($arreglo)
     {
+        $encontrado = false; //bandera en false por defecto
         $peliculas = $this->obtenerDatos(); //traigo el arreglo completo de peliculas
-        $id = $arreglo['id'];
-        $titulo = $arreglo['titulo'];
-        $genero = $arreglo['genero'];
-        $anio = $arreglo['anio'];
-        $descripcion = $arreglo['descripcion'];
-        $imagen = $arreglo['imagen'];
+        $id = $arreglo['id']; //recupero el id de la pelicula por los datos que vienen por parametros
 
-        foreach ($peliculas as $pelicula) {
-            if ($pelicula['id'] === $id) {
-                $pelicula['titulo'] = $titulo;
-                $pelicula['genero'] = $genero;
-                $pelicula['anio'] = $anio;
-                $pelicula['descripcion'] = $descripcion;
-                $pelicula['imagen'] = $imagen;
+        foreach ($peliculas as $i => $pelicula) { //recorro todas las peliculas hasta encontrar la que estoy buscando
+            if ($pelicula['id'] === $id) { //si la encuentro cambio todos los datos o los dejo por los que ya estaban
+                $peliculas[$i]['titulo'] = $arreglo['titulo'];
+                $peliculas[$i]['genero'] = $arreglo['genero'];
+                $peliculas[$i]['anio'] = $arreglo['anio'];
+                $peliculas[$i]['descripcion'] = $arreglo['descripcion'];
+                $peliculas[$i]['imagen'] = $arreglo['imagen'];
+
+                $encontrado = true; //cambio la bandera
+            }
+
+            if ($encontrado) { //si se encontró la pelicula la mando al json otra vez ya modificada
+                file_put_contents(
+                    $this->archivo,
+                    json_encode($peliculas, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
+                    LOCK_EX
+                );
             }
         }
-        file_put_contents(
-            $this->archivo,
-            json_encode($peliculas, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
-            LOCK_EX
-        );
     }
 }

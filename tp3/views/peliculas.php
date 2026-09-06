@@ -38,8 +38,8 @@
             <div>
                 <h2><?= htmlspecialchars($pelicula['titulo']) ?></h2>
                 <p><?= htmlspecialchars($pelicula['genero']) ?> · <?= (int) $pelicula['anio'] ?></p>
-                <a href="index.php?action=detalle&id=<?= (int) $pelicula['id'] ?>">Ver detalle</a>
-                <a href="index.php?action=mostrarDatosEdicion&id=<?= (int) $pelicula['id'] ?>">Editar datos</a>
+                <a href="index.php?action=detalle&id=<?= (int) $pelicula['id'] ?>">| Ver detalle |</a>
+                <a href="index.php?action=mostrarDatosEdicion&id=<?= (int) $pelicula['id'] ?>">| Editar datos |</a>
 
             </div>
         </article>
