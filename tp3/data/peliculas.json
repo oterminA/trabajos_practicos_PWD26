@@ -1,42 +1,26 @@
 [
     {
-        "id": 1,
-        "titulo": "Volver al futuro",
-        "genero": "Ciencia ficción",
-        "anio": 2026,
-        "descripcion": "Marty McFly viaja accidentalmente al pasado.",
-        "imagen": "pelicula_6a9caf27716947.91481553.jpg"
-    },
-    {
-        "id": 2,
-        "titulo": "Matrix",
-        "genero": "Drama",
-        "anio": 1999,
-        "descripcion": "Un programador descubre que la realidad no es lo que parece.",
-        "imagen": "pelicula_6a9caf15445017.34176561.jpg"
-    },
-    {
-        "id": 3,
-        "titulo": "El gran pez",
-        "genero": "Drama",
-        "anio": 2003,
-        "descripcion": "Un hijo intenta conocer la verdadera historia de su padre.",
-        "imagen": "pelicula_6a9caf1ec49711.00598897.jpg"
+        "titulo": "La familia del futuro",
+        "genero": "Infantil",
+        "anio": "2004",
+        "descripcion": "que tipazos los robinson",
+        "imagen": "portada.jpg6a9e185c81ec16.88448484.jpg",
+        "id": 1
     },
     {
         "titulo": "Orgullo y Prejuicio",
-        "genero": "Ciencia ficción",
-        "anio": 2004,
-        "descripcion": "Excelente.",
-        "imagen": "pelicula_6a9c181c00e045.54906665.jpg",
-        "id": 4
+        "genero": "Drama",
+        "anio": "2005",
+        "descripcion": "Excelencia pura",
+        "imagen": "oyp.jpg6a9e1875ee2875.56571883.jpg",
+        "id": 2
     },
     {
-        "titulo": "Charlie y la fábrica de chocolates",
-        "genero": "Infantil",
-        "anio": 2000,
-        "descripcion": "Fel-fort falopa",
-        "imagen": "pelicula_6a9caf04346801.68168733.jpg",
-        "id": 5
+        "titulo": "Matrix",
+        "genero": "Ciencia ficción",
+        "anio": "1985",
+        "descripcion": "Un programador macanudo",
+        "imagen": "matrix.jpg6a9e18967d8060.05400741.jpg",
+        "id": 3
     }
 ]

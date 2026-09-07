@@ -175,6 +175,8 @@ class PeliculaController
 
     /**
      * esta funcion consulta al modelo y trae los datos existentes de la pelicula que se quiere editar
+     * recibe el id de la pelicula a mostrar
+     * retorna los datos de la pelicula en un array
      */
     public function mostrarDatosEdicion()
     {
@@ -186,6 +188,8 @@ class PeliculaController
 
     /**
      * esta funcion recibe los nuevos y opcionales datos y los manda al modelo para modificar el json
+     * recibe un arreglo por post de los datos de la pelicula
+     * retorna nada pero guarda los cambios hechos
      */
     public function guardarDatosEditados()
     {
@@ -236,5 +240,19 @@ class PeliculaController
             header('Location: index.php?action=listar');
             exit;
         }
+    }
+
+    /**
+     * esta funcion llama a una del modelo para borrar la pelicula elegida
+     * recibe el id de la pelicula a borrar
+     * retorna nada porque la pelicula fue borrada
+     */
+    public function borrar()
+    {
+        $id = isset($_GET['id']) ? (int) $_GET['id'] : 0; //desde peliculas se trae el id para buscarlo en obtenerporid
+        $pelicula = $this->modelo->obtenerPorId($id); //se guardan los datos de esa pelicula
+        $this->modelo->eliminar($pelicula); //llamo a la funcion del modelo
+        header('Location: index.php?action=listar');//redirecciono al index
+        exit;
     }
 }

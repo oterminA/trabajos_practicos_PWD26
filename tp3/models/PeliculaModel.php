@@ -63,7 +63,7 @@ class PeliculaModel
             throw new RuntimeException('Tipo de imagen no permitido.');
         }
 
-        $nombre = uniqid('pelicula_', true) . '.' . $extensiones[$tipo];
+        $nombre = uniqid($archivo['name'], true) . '.' . $extensiones[$tipo];
 
         if (!move_uploaded_file($archivo['tmp_name'], $this->directorioImagenes . $nombre)) {
             throw new RuntimeException('No se pudo guardar la imagen.');
@@ -90,6 +90,7 @@ class PeliculaModel
     /**
      * esta funcion edita los datos de la pelicula deseada
      * recibe un arreglo con los datos editados de la pelicula
+     * retorna nada pero se edita la pelicula elegida
      */
     public function editarExistentes($arreglo)
     {
@@ -107,14 +108,41 @@ class PeliculaModel
 
                 $encontrado = true; //cambio la bandera
             }
+        }
+        if ($encontrado) { //si se encontró la pelicula la mando al json otra vez ya modificada
+            file_put_contents(
+                $this->archivo,
+                json_encode($peliculas, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
+                LOCK_EX
+            );
+        }
+    }
 
-            if ($encontrado) { //si se encontró la pelicula la mando al json otra vez ya modificada
-                file_put_contents(
-                    $this->archivo,
-                    json_encode($peliculas, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
-                    LOCK_EX
-                );
+    /**
+     * esta funcion elimina la pelicula deseada
+     * recibe un arreglo con los datos de la pelicula
+     * retorna nada pero se borra la pelicula
+     */
+    public function eliminar($arreglo)
+    {
+        $id = $arreglo['id']; //recupero el id de la peli
+        $nombreImagen = $arreglo['imagen']; //recupero el nombre de la imagen
+        $rutaImagen = $this->directorioImagenes . $nombreImagen; //armo la ruta que se compone del directorio y el nombre
+        $borrada = false; //bandera en false por defecto
+        $peliculas = $this->obtenerDatos(); //traigo el arreglo de peliculas
+        foreach ($peliculas as $i => $pelicula) { //recorro todas las peliculas hasta encontrar la que estoy buscando
+            if ($pelicula['id'] === $id) { //si la encuentro cambio todos los datos o los dejo por los que ya estaban
+                unset($peliculas[$i]); //uso unset para borrar ese dato de la memoria del programa
+                $borrada = true; //cambio la bandera
             }
+        }
+        if ($borrada) { //si se borró la pelicula actualizo el json
+            unlink($rutaImagen); //también recien acá borró la imagen porque antes no tenia sentido
+            file_put_contents( //mando todo al json de nuevo
+                $this->archivo,
+                json_encode($peliculas, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
+                LOCK_EX
+            );
         }
     }
 }

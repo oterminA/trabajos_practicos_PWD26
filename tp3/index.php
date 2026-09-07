@@ -26,7 +26,10 @@ switch ($accion) {
     case 'guardarDatosEditados':
         $controller->guardarDatosEditados();
         break;
+    case 'borrar':
+        $controller->borrar();
+        break;
     default:
         http_response_code(404);
-        echo 'Acción no válida';
+        include __DIR__ . ('/views/mi404.php');
 }
