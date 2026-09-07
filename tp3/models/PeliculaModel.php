@@ -145,4 +145,17 @@ class PeliculaModel
             );
         }
     }
+
+    /**
+     * esta funcion busca una pelicula por el titulo
+     * recibe un string que es el titulo de la pelicula
+     * retorna la pelicula encontrada
+     */
+    public function buscar($titulo)
+    {
+        return array_values(array_filter( //hago un filtrado con esas funciones y retorno la pelicula encontrada o no usando el titulo para buscarla
+            $this->obtenerDatos(),
+            fn($p) => $p['titulo'] === $titulo
+        ));
+    }
 }

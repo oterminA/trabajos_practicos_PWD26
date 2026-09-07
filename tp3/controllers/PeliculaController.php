@@ -25,7 +25,7 @@ class PeliculaController
 
     public function cienciaFiccion(): void
     {
-        $peliculas = $this->modelo->obtenerPorGenero('Ciencia ficción'); //guardo acá las peliculas filtradas usando esa funcion desde el modelo
+        $peliculas = $this->modelo->obtenerPorGenero('Ciencia ficción'); //guarda acá las peliculas filtradas usando esa funcion desde el modelo
         require __DIR__ . '/../views/peliculas.php'; //eso se manda e peliculas.php
     }
 
@@ -252,7 +252,23 @@ class PeliculaController
         $id = isset($_GET['id']) ? (int) $_GET['id'] : 0; //desde peliculas se trae el id para buscarlo en obtenerporid
         $pelicula = $this->modelo->obtenerPorId($id); //se guardan los datos de esa pelicula
         $this->modelo->eliminar($pelicula); //llamo a la funcion del modelo
-        header('Location: index.php?action=listar');//redirecciono al index
+        header('Location: index.php?action=listar'); //redirecciono al index
         exit;
+    }
+
+    /**
+     * esta funcion la uso para buscar una pelicula
+     */
+    public function buscar()
+    {
+        $titulo = trim($_POST['buscar'] ?? ''); //desde la vista recupero el nombre a buscar
+        $resultado = $this->modelo->buscar($titulo); //se lo mando al modelo para que lo busque y guardo el resultado acá
+        if (empty($resultado)) { //si desde el modelo no se devolvió algo es porque quizas no existe
+            $peliculas = [['titulo' => '']]; //entonces guardo como vacio el titulo
+        } else { //si se devolvió algo lo paso para que se vea en la vista
+            $peliculas = $resultado;
+        }
+        require __DIR__ . '/../views/peliculas.php';
+        // die("quedé acá");
     }
 }

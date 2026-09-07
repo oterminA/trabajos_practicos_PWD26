@@ -29,7 +29,10 @@ switch ($accion) {
     case 'borrar':
         $controller->borrar();
         break;
+    case 'buscar':
+        $controller->buscar();
+        break;
     default:
         http_response_code(404);
-        include __DIR__ . ('/views/mi404.php');
+        include __DIR__ . ('/views/mi404.php'); //el html que hice para mostrar el 404 temporal
 }

@@ -18,13 +18,13 @@
             <div class="card-body">
                 <div class="container text-center">
                     <div class="row">
-                        <div class="col-8"><img src="../uploads/404.png" alt="imagen de error 404"></div>
+                        <div class="col-8"><img src="/uploads/404.png" alt="imagen de error 404"></div>
 
                         <div class="col-4 d-flex flex-column justify-content-center align-items-center">
                             <h3>Algo salió mal</h3>
-                            <p>Porque no existe la página que estás buscando</p>
+                            <p>Porque <b>no existe</b> la página que estás buscando</p>
                             <p>Tenés que volver al listado principal :)</p>
-                            <p><a href="/index.php" class="btn btn-primary mt-2">← Volver</a></p>
+                            <p><a href="/tp3/index.php" class="btn btn-primary mt-2">← Volver</a></p>
 
                         </div>
                     </div>
