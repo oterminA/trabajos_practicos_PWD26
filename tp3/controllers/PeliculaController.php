@@ -13,6 +13,7 @@ class PeliculaController
     public function index(): void
     {
         $peliculas = $this->modelo->obtenerTodas(); //desde el modelo se va a esta funcion que trae todas las peliculas
+        $generos = $this->modelo->obtenerGeneros(); //ESTO TIENE QUE ESTAR PARA MOSTRAR LO DEL EJERCICIO4
         require __DIR__ . '/../views/peliculas.php'; //y con esto se redirige a peliculas.php con lo que esté guardado en $peliculas
     }
 
@@ -258,6 +259,8 @@ class PeliculaController
 
     /**
      * esta funcion la uso para buscar una pelicula
+     * entra el titulo de la pelicula
+     *retorno la pelicula buscada o vacio si no hay nada
      */
     public function buscar()
     {
@@ -270,5 +273,21 @@ class PeliculaController
         }
         require __DIR__ . '/../views/peliculas.php';
         // die("quedé acá");
+    }
+
+    /**
+     * esta funcion ocupa una del modelo para filtrar los generos de las peliculas
+     */
+    public function mostrarGeneros()
+    {
+        $generoSeleccionado = $_POST['genero'] ?? $_GET['genero'] ?? ''; //por post o get recibo el genero elegido(puse pots en caso de que lo cambie y no me de cuenta de que no actualicé esta parte)
+        if ($generoSeleccionado !== '') { //si se eligió un genero
+            $peliculas = $this->modelo->obtenerPorGenero($generoSeleccionado); //llamo a esta funcion del modelo que busca el genero que se necesita
+        } else { //si no se eligió nada entonces se llaman a odas las peliculas
+            $peliculas = $this->modelo->obtenerTodas();
+        }
+
+        $generos = $this->modelo->obtenerGeneros(); //en lo que le mando a la vista muestro todos los generos
+        require __DIR__ . '/../views/peliculas.php';
     }
 }

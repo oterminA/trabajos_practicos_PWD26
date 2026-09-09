@@ -2,7 +2,7 @@
     {
         "titulo": "La familia del futuro",
         "genero": "Infantil",
-        "anio": "2004",
+        "anio": 2004,
         "descripcion": "que tipazos los robinson",
         "imagen": "portada.jpg6a9e185c81ec16.88448484.jpg",
         "id": 1
@@ -22,5 +22,37 @@
         "descripcion": "Un programador macanudo",
         "imagen": "matrix.jpg6a9e18967d8060.05400741.jpg",
         "id": 3
+    },
+    {
+        "titulo": "La la land",
+        "genero": "Musical",
+        "anio": "2016",
+        "descripcion": "Sebastian, un pianista de jazz, y Mia, una aspirante a actriz, se enamoran locamente; pero la ambición desmedida que tienen por triunfar en sus respectivas carreras, en una ciudad como Los Ángeles, repleta de competencia y carente de piedad, pone en peligro su amor.",
+        "imagen": "lalaland.jpg6a9ed34f81e309.60863679.jpg",
+        "id": 4
+    },
+    {
+        "titulo": "Young guns",
+        "genero": "Western",
+        "anio": "1988",
+        "descripcion": "Después del asesinato de su tutor, seis asistentes que buscan venganza se vuelven el blanco de un asesino en serie.",
+        "imagen": "youngguns.jpg6a9ed3ad831302.60185031.jpg",
+        "id": 5
+    },
+    {
+        "titulo": "Hackers",
+        "genero": "Ciencia ficción",
+        "anio": "2000",
+        "descripcion": "Un grupete de chicos salva al mundo del petróleo",
+        "imagen": "portada.jpg6aa015e3008f76.09278117.jpg",
+        "id": 6
+    },
+    {
+        "titulo": "Scream",
+        "genero": "Terror",
+        "anio": "1997",
+        "descripcion": "Un enmascarado mata a trochi mochi",
+        "imagen": "portada.jpg6aa17d89ea5648.93941749.jpg",
+        "id": 7
     }
 ]

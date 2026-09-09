@@ -13,20 +13,15 @@
             padding: 0 20px;
         }
 
-        form {
-            margin-top: 20px;
-        }
-
         nav {
             display: flex;
             gap: 10px;
-            margin-bottom: 25px;
         }
 
         .boton,
         .btn,
         #buscar {
-            padding: 9px 14px;
+            padding: 9px;
             border: 1px solid #bbb;
             border-radius: 6px;
             text-decoration: none;
@@ -66,8 +61,8 @@
         .btn {
             color: #2457a6;
             text-decoration: none;
-            margin: 5px;
         }
+
     </style>
 </head>
 
@@ -75,14 +70,30 @@
     <h1>Catálogo de películas</h1>
     <form action="index.php?action=buscar" method="POST">
         <input type="search" name="buscar" id="buscar" placeholder="Buscar película por su título exacto" style="width: 300px;">
-        <button type="submit" class="btn btn-outline-secondary">Buscar</button>
+        <button type="submit" class="boton btn btn-outline-light">Buscar</button>
     </form>
     <hr>
     <nav>
-        <a class="boton btn btn-outline-secondary" href="index.php?action=listar">Todas</a>
-        <a class="boton btn btn-outline-secondary" href="index.php?action=cienciaFiccion">Ciencia ficción</a>
-        <a class="boton btn btn-outline-secondary" href="index.php?action=nueva">+ Agregar película</a>
+        <a class="btn btn-outline-light" href="index.php?action=nueva">+ Agregar película</a>
+
+        <form action="index.php" method="GET" id="formGenero">
+            <!-- puse get porque con post no funcionaba -->
+            <input type="hidden" name="action" value="mostrarGeneros">
+            <!-- eso tengo que ponerlo así porque si lo meto en el index no funciona la parte del js -->
+            <select class="btn btn-outline-light boton" name="genero" id="selectGenero">
+                <option value="" selected>Todos los géneros</option>
+                <?php foreach ($generos as $gen): ?>
+                    <!-- $generos lo traigo desde la funcion que es llamada en mostrarGeneros y el submit se hace desde el js porque no queria poner el boton de filtrar porque se veia raro -->
+                    <!-- me habia olvidado de revisar que si no se apretaba ningun genero en especifico igual se muestren todos en todos los generos -->
+                    <option value="<?= htmlspecialchars($gen) ?>" <?= (isset($_GET['genero']) && $_GET['genero'] === $gen) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($gen) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </form>
     </nav>
+
+
     <?php foreach ($peliculas as $pelicula): ?>
         <article>
             <!-- reviso que exista una pelicula -->
@@ -112,9 +123,22 @@
                 </div>
             <?php endif; ?>
 
-
         </article>
     <?php endforeach; ?>
+    <p><a href="/index.php">← Volver a inicio</a></p>
+
+
+    <!-- ESTO TENDRIA QUE IR APARTE PERO TENGO QUE HACER OTRO SCRIPT PORQUE TIRA ERROR POR LAS VARIABLES DECLARADAS EN OTROS ARCHIVOS Y QUE NO ESTÁN ACÁ -->
+    <script>
+        // recupero las variables que voy a necesitar
+        let select = document.querySelector("#selectGenero");
+        let formulario = document.querySelector("#formGenero");
+
+        select.addEventListener('change', function() {
+            // cuando el select cambie se hace submit en el formulario que seria lo mismo que poner un button type=submit pero se hace acá para poder hacer lo que me parece mejor a mi
+            formulario.submit();
+        });
+    </script>
 </body>
 
 </html>

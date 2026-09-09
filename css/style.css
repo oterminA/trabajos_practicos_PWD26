@@ -77,14 +77,14 @@ h1 {
     padding: 10px;
     background-color: #3a0303;
     width: max-content;
-    color: white;
+    color: lightblue;
     border-radius: 5px;
     margin: 20px;
     box-shadow: 2px 5px 8px rgb(56, 56, 56);
 }
 
 .mini-contenedor a {
-    color: white;
+    color: lightblue;
     font-style: italic;
 }
 

@@ -8,7 +8,7 @@
 </head>
 <body>
     <footer class="footer-container">
-        <p id="p-footer">Carolina Otermin</p>
+        <p id="p-footer">⋆⊱༻𖥸༺⊰⋆ Hecho por Carolina Otermin ⋆⊱༻𖥸༺⊰⋆</p>
     </footer>
 </body>
 </html>

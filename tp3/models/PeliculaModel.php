@@ -39,11 +39,11 @@ class PeliculaModel
         return null;
     }
 
-    public function obtenerPorGenero(string $genero): array
+    public function obtenerPorGenero($generoSeleccionado)
     {
         return array_values(array_filter(
             $this->obtenerDatos(),
-            fn($p) => $p['genero'] === $genero
+            fn($p) => $p['genero']=== $generoSeleccionado
         ));
     }
 
@@ -157,5 +157,21 @@ class PeliculaModel
             $this->obtenerDatos(),
             fn($p) => $p['titulo'] === $titulo
         ));
+    }
+
+    /**
+     * esta funcion filtra y guarda los generos no repetidos de las peliculas
+     */
+    public function obtenerGeneros()
+    {
+        $generos = []; //array vacio
+        $peliculas = $this->obtenerDatos(); //guardo el arreglo de peliculas
+        foreach ($peliculas as $peli) {
+            $unGenero = $peli['genero']; //recupero el genero de la peli
+            array_push($generos, $unGenero); //lo pusheo en el arreglo
+        }
+
+        $resultado = array_values(array_unique($generos)); //se supone que esto elimina los valores repetidos
+        return $resultado;
     }
 }
