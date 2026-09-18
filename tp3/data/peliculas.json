@@ -54,5 +54,13 @@
         "descripcion": "Un enmascarado mata a trochi mochi",
         "imagen": "portada.jpg6aa17d89ea5648.93941749.jpg",
         "id": 7
+    },
+    {
+        "titulo": "La casa monstruo",
+        "genero": "Infantil",
+        "anio": 2016,
+        "descripcion": "Una casa hecha de bullying",
+        "imagen": "portada.jpg6aad2f15cd3b22.27245280.jpg",
+        "id": 8
     }
 ]

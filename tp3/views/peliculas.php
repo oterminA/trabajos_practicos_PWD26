@@ -69,6 +69,7 @@
 <body>
     <h1>Catálogo de películas</h1>
     <form action="index.php?action=buscar" method="POST">
+        <!-- se que los buscadores tienen que ser con get pero con eso no me deja buscar las pelis -->
         <input type="search" name="buscar" id="buscar" placeholder="Buscar película por su título exacto" style="width: 300px;">
         <button type="submit" class="boton btn btn-outline-light">Buscar</button>
     </form>

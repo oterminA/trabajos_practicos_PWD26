@@ -91,7 +91,7 @@ class PeliculaController
      * recibe un array
      * retorna un array de string errores
      */
-    public function datosNulos($datos)
+    private function datosNulos($datos)
     {
         $errores = [];
         if ($datos['titulo'] === '') {
@@ -113,7 +113,7 @@ class PeliculaController
      * recibe un entero
      * retorna un arreglo de string errores
      */
-    public function validarAnio($anio)
+    private function validarAnio($anio)
     {
         $errores = [];
         $fecha = filter_var($anio, FILTER_VALIDATE_INT);
@@ -132,7 +132,7 @@ class PeliculaController
      * recibe una imagen y un boolean indicando si es obligatoria de pedir o no
      * retorna un arreglo que trae string errores y el tipo de extension de la imagen
      */
-    public function validarImagen($imagen, $esObligatoria = false)
+    private function validarImagen($imagen, $esObligatoria = false)
     {
         $resultado = [ //arreglo vacio para guardar errores y el tipo de extension
             'errores' => [],
@@ -264,7 +264,7 @@ class PeliculaController
      */
     public function buscar()
     {
-        $titulo = trim($_POST['buscar'] ?? ''); //desde la vista recupero el nombre a buscar
+        $titulo = $_POST['buscar'] ?? ''; //desde la vista recupero el nombre a buscar
         $resultado = $this->modelo->buscar($titulo); //se lo mando al modelo para que lo busque y guardo el resultado acá
         if (empty($resultado)) { //si desde el modelo no se devolvió algo es porque quizas no existe
             $peliculas = [['titulo' => '']]; //entonces guardo como vacio el titulo

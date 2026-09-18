@@ -90,7 +90,7 @@ class PeliculaModel
     /**
      * esta funcion edita los datos de la pelicula deseada
      * recibe un arreglo con los datos editados de la pelicula
-     * retorna nada pero se edita la pelicula elegida
+     * retorna boolean
      */
     public function editarExistentes($arreglo)
     {
@@ -116,12 +116,13 @@ class PeliculaModel
                 LOCK_EX
             );
         }
+        return $encontrado;
     }
 
     /**
      * esta funcion elimina la pelicula deseada
      * recibe un arreglo con los datos de la pelicula
-     * retorna nada pero se borra la pelicula
+     * retorna boolean
      */
     public function eliminar($arreglo)
     {
@@ -144,6 +145,7 @@ class PeliculaModel
                 LOCK_EX
             );
         }
+        return $borrada;
     }
 
     /**
