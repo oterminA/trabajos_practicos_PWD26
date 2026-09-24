@@ -1,7 +1,7 @@
 ﻿@extends('layouts.peliculas', ['title' => 'Nueva pelicula'])
 
 @section('content')
-    <h1>Nueva pelicula</h1>
+    <h2>Nueva pelicula</h1>
 
     @if ($errors->any())
         <div class="errores">
@@ -16,13 +16,13 @@
     <form action="{{ route('peliculas.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <label for="titulo">Titulo</label>
-        <input id="titulo" name="titulo" value="{{ old('titulo') }}" required>
+        <label for="titulo">Título</label>
+        <input id="titulo" name="titulo" value="{{ old('titulo') }}" required maxlength="120">
 
-        <label for="genero">Genero</label>
-        <input id="genero" name="genero" value="{{ old('genero') }}" required>
+        <label for="genero">Género</label>
+        <input id="genero" name="genero" value="{{ old('genero') }}" required maxlength="80">
 
-        <label for="anio">Anio</label>
+        <label for="anio">Año</label>
         <input
             id="anio"
             type="number"
@@ -34,14 +34,15 @@
         >
 
         <label for="descripcion">Descripcion</label>
-        <textarea id="descripcion" name="descripcion" required>{{ old('descripcion') }}</textarea>
+        <textarea id="descripcion" name="descripcion" required maxlength="1000">{{ old('descripcion') }}</textarea>
 
         <label for="imagen">Imagen</label>
         <input id="imagen" type="file" name="imagen" accept="image/jpeg,image/png,image/webp" required>
-        <small>JPG, PNG o WEBP. Maximo 2 MB.</small>
+        <small>JPG, PNG o WEBP. Maximo 300 KB.</small>
 
-        <button type="submit">Guardar pelicula</button>
+        <button class="btn btn-outline-secondary" type="submit">Guardar pelicula</button>
     </form>
 
-    <p><a href="{{ route('peliculas.index') }}"><- Cancelar</a></p>
+    <a class="btn btn-outline-secondary" href="{{ route('peliculas.index') }}">Cancelar</a>
+
 @endsection

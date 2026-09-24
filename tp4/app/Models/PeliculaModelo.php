@@ -22,15 +22,15 @@ use RuntimeException; //esto es de js
 
 class PeliculaModelo
 {
-    //voy a mantener los atributos y constructor casi iguales
     private string $archivo;
-    private string $disk;
 
-    public function __construct()
-    {
-        $this->archivo = storage_path('app/public/peliculas.json');
-        $this->disk = 'public';
+    public function __construct(
+        ?string $archivo = null,
+        private readonly string $disk = 'public',
+    ) {
+        $this->archivo = $archivo ?? storage_path('app/public/peliculas.json');
     }
+
 
     /**
      * @return array<int, array{id: int, titulo: string, genero: string, anio: int, descripcion: string, imagen: ?string}>
@@ -91,7 +91,7 @@ class PeliculaModelo
             return null;
         }
 
-        return Storage::disk('public')->url($ruta);
+        return Storage::url($ruta);
     }
 
     /**
@@ -132,32 +132,34 @@ class PeliculaModelo
      * recibe un arreglo con los datos editados de la pelicula
      * retorna true/false si se edita la pelicula elegida
      */
-    public function editarExistentes($id, $datos, ?UploadedFile $imagen = null)
+    public function editarExistentes($id, $datos, $imagen)
     {
         $peliculas = $this->obtenerDatos();
         $encontrado = false;
 
         foreach ($peliculas as $i => $pelicula) {
-            if ((int) $pelicula['id'] === $id) {
-
-                $peliculas[$i]['titulo'] = $datos['titulo'];
-                $peliculas[$i]['genero'] = $datos['genero'];
-                $peliculas[$i]['anio'] = (int) $datos['anio'];
+            if ((int) $pelicula['id'] === (int) $id) {
+                $peliculas[$i]['titulo']      = $datos['titulo'];
+                $peliculas[$i]['genero']      = $datos['genero'];
+                $peliculas[$i]['anio']        = (int) $datos['anio'];
                 $peliculas[$i]['descripcion'] = $datos['descripcion'];
+
                 if ($imagen !== null) {
-                    if (!empty($peliculas[$i]['imagen'])) {
-                        Storage::disk($this->disk)->delete($peliculas[$i]['imagen']);
+                    if (!empty($pelicula['imagen'])) {
+                        Storage::disk($this->disk)->delete($pelicula['imagen']);
                     }
                     $peliculas[$i]['imagen'] = $imagen->store('peliculas', $this->disk);
                 }
+
+                $encontrado = true;
             }
-            $encontrado = true;
         }
 
         //acá aparentemente tengo que usar la funcion que hizo la profe esta vez
         if ($encontrado) {
             $this->guardarDatos($peliculas);
         }
+
         return $encontrado;
     }
 
