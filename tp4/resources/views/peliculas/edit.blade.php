@@ -4,7 +4,7 @@
     <h2>Editar pelicula</h2>
 
     @if ($errors->any())
-        <div class="errores">
+        <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>

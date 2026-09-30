@@ -28,7 +28,7 @@ class PeliculaModelo
         ?string $archivo = null,
         private readonly string $disk = 'public',
     ) {
-        $this->archivo = $archivo ?? storage_path('app/public/peliculas.json');
+        $this->archivo = $archivo ?? storage_path('app/public/peliculas.json'); //acá es donde guardo el script json
     }
 
 
@@ -134,24 +134,23 @@ class PeliculaModelo
      */
     public function editarExistentes($id, $datos, $imagen)
     {
-        $peliculas = $this->obtenerDatos();
-        $encontrado = false;
+        $peliculas = $this->obtenerDatos(); //recuepro todas las peliculas
+        $encontrado = false; //bandera en valor por defecto
 
-        foreach ($peliculas as $i => $pelicula) {
+        foreach ($peliculas as $i => $pelicula) { //acá lo que hago es iterar las peliculas hasta coincidir con la pelicula que estoy buscando por id y después voy actualizando los datos(con datos nuevos o los existentes que quedaron)
             if ((int) $pelicula['id'] === (int) $id) {
                 $peliculas[$i]['titulo']      = $datos['titulo'];
                 $peliculas[$i]['genero']      = $datos['genero'];
                 $peliculas[$i]['anio']        = (int) $datos['anio'];
                 $peliculas[$i]['descripcion'] = $datos['descripcion'];
 
-                if ($imagen !== null) {
-                    if (!empty($pelicula['imagen'])) {
-                        Storage::disk($this->disk)->delete($pelicula['imagen']);
+                if ($imagen !== null) { //si la imagen no es null
+                    if (!empty($pelicula['imagen'])) { //y la pelicula tiene como valor una imagen
+                        Storage::disk($this->disk)->delete($pelicula['imagen']); //borro la imagen que tenia
                     }
-                    $peliculas[$i]['imagen'] = $imagen->store('peliculas', $this->disk);
+                    $peliculas[$i]['imagen'] = $imagen->store('peliculas', $this->disk); //y acá cargo con una nueva imagen(que puede ser nueva o la vieja que tenia)
                 }
-
-                $encontrado = true;
+                $encontrado = true; //cambio el valor de la variable
             }
         }
 
@@ -159,7 +158,6 @@ class PeliculaModelo
         if ($encontrado) {
             $this->guardarDatos($peliculas);
         }
-
         return $encontrado;
     }
 
@@ -170,10 +168,11 @@ class PeliculaModelo
      */
     public function delete($id)
     {
-        $peliculas = $this->obtenerDatos();
-        $borrada = false;
+        //creo que esta funcion puede hacerse más sencilla pero asi me salio a mi xd
+        $peliculas = $this->obtenerDatos(); //recuper todas las peliculas
+        $borrada = false; //bandera en falso
 
-        foreach ($peliculas as $i => $pelicula) {
+        foreach ($peliculas as $i => $pelicula) { //itero por cada pelicula hasta encontrar la necesaria
             if ((int) $pelicula['id'] === $id) {
                 //estp es para borrar la imagen de la peli si se tenia una, yo lo hacia con unlink pero acá uso delete q busca y elimina el archivo directamente en la carpeta correcta sin necesidad de armar rutas
                 if (!empty($pelicula['imagen'])) {

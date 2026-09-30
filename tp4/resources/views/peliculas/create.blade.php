@@ -1,10 +1,11 @@
 ﻿@extends('layouts.peliculas', ['title' => 'Nueva pelicula'])
 
 @section('content')
-    <h2>Nueva pelicula</h1>
+    <h2>Nueva pelicula</h2>
 
+        {{-- acá se muestran los errores que entiendo yo tira laravel co los formularios por ejemplo, cuando no se cumple con lo del validate --}}
     @if ($errors->any())
-        <div class="errores">
+        <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>

@@ -1,5 +1,7 @@
 @extends('layouts.peliculas', ['title' => $titulo])
-
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/libros.css') }}">
+@endpush
 @section('content')
     <h2 class="display-5 text-center">
         {{ $titulo }}</h2>
@@ -44,6 +46,6 @@
         @endforelse
 
         <p>
-            <a class="btn btn-outline-secondary" href="{{ route('peliculas.show', $pelicula['id'] ?? $id_Pelicula) }}">Volver a la pelicula</a>
+            <a class="btn btn-outline-secondary" href="{{ route('libros.show', $libro['id'] ?? $idLibro) }}">Volver al libro</a>
         </p>
     @endsection

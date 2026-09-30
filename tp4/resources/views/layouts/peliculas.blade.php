@@ -6,157 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>{{ $title ?? 'Peliculas' }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-            color: #222;
-            min-height: 100vh;
-        }
-
-        article {
-            box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.20);
-            border-radius: 8px;
-        }
-
-        nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        a,
-        button {
-            text-decoration: none;
-            color: brown;
-        }
-
-        .boton {
-            padding: 9px 14px;
-            border: 1px solid #bbb;
-            border-radius: 6px;
-            text-decoration: none;
-            background: #fff;
-            color: brown;
-        }
-
-        .boton.activo {
-            border-color: #2457a6;
-            background: #eef4ff;
-        }
-
-        .pelicula {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 15px 0;
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .poster,
-        .sin-imagen {
-            width: 120px;
-            height: 170px;
-            border-radius: 6px;
-            flex: 0 0 120px;
-        }
-
-        .poster {
-            object-fit: cover;
-        }
-
-        .sin-imagen {
-            background: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: brown;
-            text-align: center;
-        }
-
-        .detalle-poster {
-            max-width: 250px;
-            max-height: 360px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        label {
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 8px;
-            margin-top: 5px;
-        }
-
-        textarea {
-            min-height: 100px;
-        }
-
-        .errores {
-            background: #fee;
-            border: 1px solid #d88;
-            padding: 12px 18px;
-            border-radius: 6px;
-        }
-
-        button {
-            background-color: white;
-            cursor: pointer;
-            border: none
-        }
-
-        .btn {
-            margin: 5px;
-        }
-
-        small {
-            display: block;
-            margin-top: 6px;
-            color: #555;
-        }
-
-        .card-footer,
-        .navbar {
-            background-color: brown;
-            color: white;
-        }
-
-        .card-footer {
-            margin-top: 10px;
-        }
-    </style>
+        {{-- este es el css q quiero mantener para toda la pagina --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {{-- acá voy a poner el especifico de cada parte --}}
+    @stack('styles')
+    <title>{{ $title ?? '' }}</title>
 </head>
 
 <body>
+    {{-- el header y footer son las cosas que se repiten en todas las paginas, por eso están en el layout --}}
     <header>
-        <nav class="navbar navbar-expand-lg ">
-            <div class="container-fluid d-flex justify-content-center align-items-center"">
-                <h1 class="display-3">
-                    <a class="nav-link text-center fst-italic" href="{{ route('peliculas.index') }}">🎬 peliculandia
-                        🎬</a>
-                </h1>
+        <nav class="navbar">
+            <div class="container-fluid d-flex flex-column align-items-center text-center">
+
+                <h1 class="text-center fst-italic display-3">pelibros</h1>
+
+                <ul class="navbar-nav d-flex flex-row justify-content-center gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link active text-light fw-bold"
+                            href="{{ route('peliculas.index') }}">Peliculas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light fw-bold" href="{{ route('libros.index') }}">Libros</a>
+                    </li>
+                </ul>
 
             </div>
         </nav>
     </header>
 
+    {{-- aca va a ir todo el contenido de las demás páginas --}}
     @yield('content')
 
     <footer class="card-footer text-center">
-        <p class="mb-0">Laravel | Blade | HTML | CSS | JS | PHP | Bootstrap</p>
+        <p class="mb-0">Laravel | Blade | HTML | CSS | JS | PHP | Bootstrap | TP4</p>
     </footer>
 </body>
 

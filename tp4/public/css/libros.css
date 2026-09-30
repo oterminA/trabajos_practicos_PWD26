@@ -1,0 +1,29 @@
+.boton {
+    padding: 9px 14px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    text-decoration: none;
+    background: #fff;
+    color: rgb(5, 102, 5);
+}
+
+a,
+button {
+    text-decoration: none;
+    color: rgb(5, 102, 5);
+}
+
+.sin-imagen {
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(5, 102, 5);
+    text-align: center;
+}
+
+.card-footer,
+.navbar {
+    background-color: rgb(5, 102, 5);
+    color: white;
+}

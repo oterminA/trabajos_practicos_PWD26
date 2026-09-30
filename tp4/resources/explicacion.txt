@@ -1,0 +1,25 @@
+///////////////////////////// EXPLICACION ///////////////////////////////
+
+*Siguiendo la estructura MVC:
+    --> MODELO: app/Models/
+    --> VISTA: resources/view/
+    --> CONTROLADOR: app/Http/Controllers/
+
+*Otras cuestiones:
+    -> imagenes: se guardan en storage/app/public/peliculas (en el caso del tp4)
+    -> json: se guarda en storage/app/public/ (en el caso del tp4 y usando json, después se usa otra cosa con bd)
+
+    -> ruteo: entiendo que a modo de 'action' se usan rutas, lo que hicimos con el switch en el tp3 se pasan a rutas que están en routes/web.php y tienen la siguiente forma
+        "Route::get('/peliculas/buscar', [PeliculaController::class, 'buscar'])->name('peliculas.buscar');"
+        -> la parte de name es la que va en los action de los formularios/links/botones. No tiene nada que ver con la funcion que se va a usar desde el controller, es solo un alias para que en el ruteo se pueda asociar el action con la funcion.
+
+    -> layout: es como una plantilla que usamos para no repetir tanto codigo en todos los scripts. Por ejemplo podemos hacer un layout que tenga el header y footer dejando espacio para que al ser insertado en otros scripts pueda mostrar también el contenido de esos archivos. Armamos el html como siempre pero sabiendo qué codigo tiene que repetirse en todos los scripts y qué codigo tiene que ser reemplazado en los otros archivos de la vista.
+    El o los layouts(porque podemos armar distintos para diferentes vistas) están en resources/view/layouts
+        -> @yield('content'): en el script del layout poner esto indica que ahi se va a poner el contenido distinto de cada script. O sea en 'content' vamos a acomodar nuestro contenido individual de cada vista.
+        -> combinación de <title>{{ $title ?? 'Peliculas' }}</title> en el layout y @extends('layouts.peliculas', ['title'  => 'Nueva pelicula']) en la pagina donde vamos a insertar el layout: en la segunda parte estamos diciendo que lo que sea que se ponga en title va a estar en el lugar indicado en el layout.
+        -> @section('content') y @endsection: esto es lo que indicamos con yield que iba a ser ocupado por contenido diferente en distintos scripts.
+
+    -> blade: es un motor de plantillas que funciona en laravel. La idea es mezclar HTML y PHP de forma limpia y ordenada. La mayoria de las cosas en html siguen igual pero al integrar el php cambian un poco.
+        -> estructuras de control: las repetitivas o alternativas llevan @ por ejemplo @if/@endif o @foreach/@endforeach pero en las condiciones se usan las variables de php normales por ejemplo $pelicula.
+        -> rutas: en los actions/links/botones los enlaces se escriben así {{ route('peliculas.store') }} o {{ route('peliculas.show', $pelicula['id']) }} si pasan un parámetro.
+        -> formularios: ahora en los formularios antes de empezar a colocar los labels hay que poner @csrf que es lo que hace que se mande la información de una forma más segura.

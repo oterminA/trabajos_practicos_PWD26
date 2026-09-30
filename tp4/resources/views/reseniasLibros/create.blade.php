@@ -1,5 +1,7 @@
 @extends('layouts.peliculas', ['title' => 'Nueva reseña'])
-
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/libros.css') }}">
+@endpush
 @section('content')
     <h2>Nueva reseña</h2>
 
@@ -13,10 +15,10 @@
         </div>
     @endif
 
-    <form action="{{ route('resenias.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('reseniasLibros.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        {{-- acá traigo el id de la peli a la que pertenece esa resenia para poder filtrarla despues --}}
-        <input type="hidden" name="pelicula_id" value="{{ $pelicula_id }}">
+        {{-- acá traigo el id del libro al que pertenece esa resenia para poder filtrarla despues --}}
+        <input type="hidden" name="libro_id" value="{{ $libro_id }}">
         <label for="nombreUsuario">Nombre de usuario</label>
         <input type="text" id="nombreUsuario" name="nombreUsuario" value="{{ old('nombreUsuario') }}" required maxlength="50">
 
@@ -30,5 +32,5 @@
         <button class="btn btn-outline-secondary" type="submit">Guardar Reseña</button>
     </form>
 
-    <a class="btn btn-outline-secondary" href="{{ route('peliculas.index') }}">Cancelar</a>
+    <a class="btn btn-outline-secondary" href="{{ route('libros.index') }}">Cancelar</a>
 @endsection

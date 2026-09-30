@@ -7,3 +7,14 @@ select.addEventListener('change', function () {
     // cuando el select cambie se hace submit en el formulario que seria lo mismo que poner un button type=submit pero se hace acá para poder hacer lo que me parece mejor a mi
     formulario.submit();
 });
+
+
+// recupero las variables que voy a necesitar
+let selectL = document.querySelector("#selectAutor");
+let form = document.querySelector("#formAutor");
+
+selectL.addEventListener('change', function () {
+    // cuando el select cambie se hace submit en el formulario que seria lo mismo que poner un button type=submit pero se hace acá para poder hacer lo que me parece mejor a mi
+    formulario.submit();
+});
+

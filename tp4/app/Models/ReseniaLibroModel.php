@@ -1,15 +1,4 @@
 <?php
-/*
-Atributos de resenia:
--id
--nombreUsuario
--comentario
--puntaje
-
-Facade o fachada: es una clase que ofrece una interfaz estática hacia los servicios disponibles dentro del contenedor de servicios del framework.
-
-!!!muchas de las funciones están copiadas del repo de la profe Clau !!!
-*/
 
 namespace App\Models;
 
@@ -18,14 +7,14 @@ use Illuminate\Http\UploadedFile; // que importa una clase para gestionar archiv
 use RuntimeException; //esto es de js
 
 
-class ReseniaModel
+class ReseniaLibroModel
 {
     private string $archivo;
 
     public function __construct(
         ?string $archivo = null,
     ) {
-        $this->archivo = $archivo ?? storage_path('app/public/resenias.json'); //acá se guarda el script json
+        $this->archivo = $archivo ?? storage_path('app/public/reseniasLibro.json'); //acá se guarda el script json
     }
 
 
@@ -64,7 +53,7 @@ class ReseniaModel
             'nombreUsuario' => $datos['nombreUsuario'],
             'comentario' => $datos['comentario'],
             'puntaje' => $datos['puntaje'],
-            'idPelicula' => $datos['idPelicula']
+            'idLibro' => $datos['idLibro']
         ];
 
         $this->guardarDatos($resenias);
@@ -104,19 +93,21 @@ class ReseniaModel
         );
     }
 
+
+
     /**
      * esta funcion filtra las reseñas que coincidan con el id de la pelicula en cuestion
      * creo que asi no era como decia la profe pero no me acuerdo como era que ella queria xd
      * recibe el id de una pelicula
      * retorna un arreglo vacio o lleno con las reseñas filtradas que pertenecen a esa peli
      */
-    public function buscarReseniaXPelicula($idPelicula): array
+    public function buscarReseniaXPelicula($idLibro): array
     {
         $reseniasFiltradas = []; //arreglo vacio
         $resenias = $this->obtenerTodas(); //recupero todas las reseñas
 
         foreach ($resenias as $resenia) { //itero sobre las reseñas
-            if (isset($resenia['idPelicula']) && (int) $resenia['idPelicula'] === (int) $idPelicula) { //si existe la variable que busco y coinciden los ids
+            if (isset($resenia['idLibro']) && (int) $resenia['idLibro'] === (int) $idLibro) { //si existe la variable que busco y coinciden los ids
             $reseniasFiltradas[] = $resenia; //voy metiendo esa reseña en un array de reseñas
         }
         }
@@ -142,3 +133,4 @@ class ReseniaModel
         return $librosFiltrados; //retorno el arreglo vacio o lleno con las reseñas de esa pelicula
     }
 }
+

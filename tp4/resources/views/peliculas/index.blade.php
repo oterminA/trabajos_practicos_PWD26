@@ -2,14 +2,13 @@
 
 @section('content')
     <h2 class="display-5 text-center">{{ $titulo }}</h2>
+    <nav class="nav">
 
     <form action="{{ route('peliculas.buscar') }}" method="get">
-        <input type="search" name="buscar" id="buscar" placeholder="Buscar película por su título exacto"
-            style="width: 300px; border-radius: 5px;border: 1px solid rgb(201, 201, 201);">
+        <input type="search" name="buscar" id="buscar" placeholder="Buscar película por su título exacto">
         <button type="submit" class="boton btn btn-outline-light">Buscar</button>
     </form>
 
-    <nav>
         <form action="{{ route('peliculas.index') }}" method="get" id="formGenero">
             <input type="hidden" name="action" value="mostrarGeneros">
             <select class=" boton" name="genero" id="selectGenero" onchange="this.form.submit()">
@@ -26,6 +25,7 @@
         <a class="boton" href="{{ route('peliculas.create') }}">Agregar pelicula</a>
     </nav>
 
+    {{-- asi se ponen los bloques de codigo de js en blade, podria pasarlo a un js aparte pero no lo hice xd --}}
     @push('scripts')
         <script src="{{ asset('js/js.js') }}"></script>
     @endpush
