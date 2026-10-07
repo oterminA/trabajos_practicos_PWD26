@@ -50,11 +50,11 @@
                         <dl class="activity-meta detail-meta-grid">
                             <div>
                                 <dt>Fecha</dt>
-                                <dd>{{ $actividad->fecha }}</dd>
+                                <dd>{{ $actividad->fecha->format('d/m/Y') }}</dd>
                             </div>
                             <div>
                                 <dt>Hora</dt>
-                                <dd>{{ $actividad->hora }}</dd>
+                                <dd>{{ substr($actividad->hora, 0, 5) }}</dd>
                             </div>
                         </dl>
 

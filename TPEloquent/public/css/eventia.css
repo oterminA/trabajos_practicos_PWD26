@@ -102,6 +102,10 @@ body {
     color: var(--teal);
 }
 
+.eyebrow.light {
+    color: var(--orange);
+}
+
 h1,
 h2,
 h3 {
@@ -396,12 +400,12 @@ h1 {
     flex-direction: row;
 }
 
-.group-description a {
+ a {
     text-decoration: none;
     padding: 5px;
 }
 
-.group-description button {
+ button {
     border: none;
     background-color: white;
     padding: 5px;
@@ -421,3 +425,4 @@ h1 {
     object-fit: cover;
     border-radius: 8px;
 }
+

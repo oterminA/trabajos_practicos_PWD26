@@ -168,11 +168,37 @@ imagen opcional en formato JPG, PNG o WebP.
         $tituloBuscado = $request->input('buscar', ''); //desde la vista recupero el titulo o lo dejo como vacio x las dudas
         $estados = Actividad::distinct()
             ->pluck('estado');
-        $resultados = Actividad::where('titulo', 'LIKE', "%{$tituloBuscado}%")->get();
+        $resultados = Actividad::where('titulo', 'LIKE', "%{$tituloBuscado}%")
+            ->orderBy('fecha', 'desc')
+            ->get();
         return view('actividades.index', [ //estos son los datos que necesito pasarle a la vista porq los va a necesitar
             'actividades' => $resultados,
             'estados' => $estados,
             'titulo' => 'Resultados para la búsqueda: "' . $tituloBuscado . '"',
+            'activeFilter' => 'todos',
+            'modelo' => new Actividad(),
+        ]);
+    }
+
+
+    /**
+     *
+     */
+    public function filter(Request $request)
+    {
+        /*Crear una pantalla que muestre únicamente actividades activas, con fecha igual o posterior a hoy y cupo mayor que cero, ordenadas por fecha y hora.*/
+
+        $resultados = Actividad::where('estado', 'ACTIVA')
+            ->where('fecha', '>=', today())
+            ->where('cupo', '>', 0)
+            ->orderBy('fecha', 'asc')
+            ->orderBy('hora', 'asc')
+            ->get();
+        $estados = Actividad::distinct()
+            ->pluck('estado');
+        return view('actividades.next', [ //estos son los datos que necesito pasarle a la vista porq los va a necesitar
+            'actividades' => $resultados,
+            'estados' => $estados,
             'activeFilter' => 'todos',
             'modelo' => new Actividad(),
         ]);

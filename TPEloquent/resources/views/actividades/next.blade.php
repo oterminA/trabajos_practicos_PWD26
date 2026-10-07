@@ -1,36 +1,21 @@
 @extends('layouts.app')
 
-@section('title', 'Actividades disponibles · Eventia')
+@section('title', 'Próximas actividades · Eventia')
 
 @section('content')
     <section class="hero">
         <div class="container hero-content">
             <p class="eyebrow">Aprender · Crear · Compartir</p>
-            <h1>Actividades disponibles</h1>
+            <h1>Próximas actividades</h1>
             <p class="hero-copy">Encontrá cursos, talleres y jornadas para aprender algo nuevo y conectar con otras personas.
             </p>
         </div>
     </section>
     <section class="container activities-section">
-        @if (session('exito'))
-            <div
-                style="padding: 14px 20px; margin-bottom: 24px; color: #fdfdfd; background-color: #4e8d5d; border: 1px solid #c3e6cb; border-radius: 8px;">
-                {{ session('exito') }}
-            </div>
-        @endif
-
-        @if (session('deleted'))
-            <div
-                style="padding: 14px 20px; margin-bottom: 24px; color: #fdfdfd; background-color: #eb5b48; border: 1px solid #c3e6cb; border-radius: 8px;">
-                {{ session('deleted') }}
-            </div>
-        @endif
-
         <div class="section-heading">
 
             <p class="eyebrow dark">Agenda</p>
             <h2>{{ $actividades->count() }} propuesta(s) para explorar</h2>
-            <a href="{{ route('actividades.next') }}" class="eyebrow light">Próximas actividades</a>
         </div>
 
         @if ($actividades->isEmpty())
