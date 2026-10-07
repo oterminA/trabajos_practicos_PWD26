@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Support\Facades\Storage; //importa o "conecta" la fachada (facade) de almacenamiento para gestionar archivos
