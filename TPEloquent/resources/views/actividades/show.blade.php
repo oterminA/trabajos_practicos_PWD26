@@ -3,6 +3,7 @@
 @section('content')
     <section class="activities-section">
         <div class="container">
+            {{-- para mostrar lo del cartelito de que se editó correctamente --}}
             @if (session('exito'))
                 <div
                     style="padding: 14px 20px; margin-bottom: 24px; color: #fdfdfd; background-color: #4e8d5d; border: 1px solid #c3e6cb; border-radius: 8px;">
@@ -21,6 +22,7 @@
                         </div>
 
                         <div class="group-modification">
+                            {{-- esto es para que se muestre el alert de borrar o no la activdad, que lleva a un route --}}
                             <a class="eyebrow dark" href="{{ route('actividades.edit', $actividad['id']) }}">✏️</a>
                             <form action="{{ route('actividades.delete', $actividad['id']) }}" method="POST"
                                 onsubmit="return confirm('¿Estás seguro de eliminar esta actividad?');">
@@ -65,7 +67,7 @@
                             </div>
                             <div>
                                 <dt>Cupo</dt>
-                                <dd>{{ $actividad->cupo === 0 ? 'No hay cupo' : $actividad->cupo . ' lugares' }} </dd>
+                                <dd>{{ $actividad->cupo === 0 ? 'No hay cupo' : $actividad->cupo . ' lugare(s)' }} </dd>
                             </div>
                         </dl>
 

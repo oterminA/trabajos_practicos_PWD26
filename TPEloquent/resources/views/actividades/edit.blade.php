@@ -4,6 +4,12 @@
     <section class="activities-section">
 
         <div class="container">
+            @if (session('exito'))
+                <div
+                    style="padding: 14px 20px; margin-bottom: 24px; color: #fdfdfd; background-color: #4e8d5d; border: 1px solid #c3e6cb; border-radius: 8px;">
+                    {{ session('exito') }}
+                </div>
+            @endif
 
             <article class="activity-detail-card" style="max-width: 700px; margin: 0 auto;">
                 <header class="detail-card-top">

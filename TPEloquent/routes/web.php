@@ -17,9 +17,3 @@ Route::put('/actividades-guardar-editado/{id}', [ActividadController::class, 'up
 Route::get('/actividades-buscar', [ActividadController::class, 'search'])->name('actividades.search');
 Route::get('/actividades-filtrar-estado', [ActividadController::class, 'index'])->name('actividades.index');
 Route::get('/actividades-proximas', [ActividadController::class, 'filter'])->name('actividades.next');
-
-
-
-
-
-

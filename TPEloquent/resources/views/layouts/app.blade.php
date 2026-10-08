@@ -29,6 +29,7 @@
                     <input type="hidden" name="action" value="mostrarEstado">
                     <select class=" boton" name="estado" id="selectEstado" onchange="this.form.submit()">
                         </option>
+                        {{-- para no hardcodear los estados sino mostrarlos dinamicamente desde lo que se tiene en la bd --}}
                         @forelse ($estados as $estado)
                             <option value="{{ $estado }}" {{ request('estado') === $estado ? 'selected' : '' }}>
                                 {{ $estado }}

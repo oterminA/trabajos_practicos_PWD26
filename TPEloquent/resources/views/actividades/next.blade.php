@@ -1,3 +1,4 @@
+{{-- este script es para mostrar lo de las actividades proximas, es lo mismo que el index pero recibe info distinta --}}
 @extends('layouts.app')
 
 @section('title', 'Próximas actividades · Eventia')

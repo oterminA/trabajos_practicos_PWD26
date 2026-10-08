@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('actividades', function (Blueprint $table) {
+        Schema::create('actividades', function (Blueprint $table) { //estos son los datos que tienen que llenarse con las migratios
             $table->id();
             $table->string('titulo', 150);
             $table->text('descripcion');
