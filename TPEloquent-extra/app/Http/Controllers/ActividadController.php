@@ -128,8 +128,7 @@ class ActividadController extends Controller
         $validated = $request->validate([ //valido como en el store
             'titulo'      => ['required',
             'string',
-            'max:150',
-            Rule::unique('actividades', 'titulo'),],
+            'max:150'],
             'fecha'       => ['nullable', 'date'],
             'hora'        => ['nullable', 'date_format:H:i'],
             'cupo'        => ['integer', 'min:1'],

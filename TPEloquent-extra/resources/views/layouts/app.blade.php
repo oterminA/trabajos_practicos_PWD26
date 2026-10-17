@@ -21,7 +21,7 @@
             </a>
             <nav aria-label="Navegación principal">
                 <form action="{{ route('actividades.search') }}" method="get">
-                    <input type="search" name="buscar" id="buscar" placeholder="Buscar actividad">
+                    <input type="search" name="buscar" id="buscar" placeholder="Buscar actividad" value="{{ old('titulo') }}">
                     <button type="submit" class="boton btn btn-outline-light">Buscar</button>
                 </form>
 
