@@ -82,7 +82,6 @@ class PeliculaController extends Controller
         $pelicula = Pelicula::findOrFail($id);
         $validated = $request->validate([
             'titulo' => ['string', 'max:120'],
-            'autor' => ['string', 'max:100'],
             'genero' => ['string', 'max:80'],
             'anio' => ['integer', 'min:1895', 'max:' . (now()->year + 5)],
             'descripcion' => ['string', 'max:1000'],

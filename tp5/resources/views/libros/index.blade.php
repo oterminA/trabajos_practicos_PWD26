@@ -19,7 +19,7 @@
 
         <form action="{{ route('libros.index') }}" method="get" id="formAutor">
             <input type="hidden" name="action" value="mostrarAutor">
-            <select class=" boton" name="autor" id="selectAutor" onchange="this.form.submit()">
+            <select class=" boton" name="autor" id="selectAutor">
                 <option value="" {{ request('autor') ? '' : 'selected' }}>Todos los autores</option>
                 @forelse ($autores as $autor)
                     <option value="{{ $autor }}" {{ request('autor') === $autor ? 'selected' : '' }}>
