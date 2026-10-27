@@ -4,7 +4,7 @@
     <script src="{{ asset('js/js.js') }}"></script>
 @endpush
 @section('content')
-    {{-- esto es para mostrar los cartelitos cuando se agrega --}}
+    {{-- esto es para mostrar los cartelitos--}}
     @if (session('exitoPelicula'))
         <div
             style="padding: 14px 20px; margin-bottom: 24px; color: #fdfdfd; background-color: #4e8d5d; border: 1px solid #c3e6cb; border-radius: 8px;">
@@ -31,7 +31,7 @@
         <form action="{{ route('peliculas.index') }}" method="get" id="formGenero">
             <input type="hidden" name="action" value="mostrarGeneros">
             <select class=" boton" name="genero" id="selectGenero" onchange="this.form.submit()">
-                <option value="" {{ request('genero') ? '' : 'selected' }}>Todos los géneros</option>
+                <option value="" {{ request('genero') ? '' : 'selected' }}> 🏷️ Todos los géneros</option>
                 @forelse ($generos as $gen)
                     <option value="{{ $gen }}" {{ request('genero') === $gen ? 'selected' : '' }}>
                         {{ $gen }}
@@ -42,11 +42,13 @@
             </select>
         </form>
 
-        <a class="boton" href="{{ route('peliculas.create') }}">Agregar pelicula</a>
-        <a class="boton" href="{{ route('actors.create') }}">Cargar actor</a>
+        <a class="boton" href="{{ route('peliculas.create') }}"> ➕ Agregar pelicula</a>
+        <a class="boton" href="{{ route('actors.create') }}">🎭 Cargar actor</a>
+        <a class="boton" href="{{ route('peliculas.sinImagen')}}">🎬 Peliculas sin imagen</a>
+
          </nav>
         <form action="{{ route('peliculas.buscar') }}" method="get" id="formularioSearch">
-            <input type="search" name="buscar" id="buscar" placeholder="Buscar película por su título">
+            <input type="search" name="buscar" id="buscar" placeholder=" 🔍 Buscar película por su título">
             {{-- <button type="submit" class="boton btn btn-outline-light">Buscar</button> --}}
             <div id="mostrar-resultados"></div>
         </form>

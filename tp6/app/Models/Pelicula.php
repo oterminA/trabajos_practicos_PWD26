@@ -3,9 +3,11 @@
 //relacion N:M con actores, una peli tiene muchos actores y muchos actores pertenecen a varias peliculas
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class Pelicula extends Model
@@ -50,6 +52,14 @@ class Pelicula extends Model
         return Attribute::make(
             get: fn() => round($this->attributes['resenias_avg_puntaje'] ?? $this->resenias()->avg('puntaje') ?? 0, 1)
         );
+    }
+
+    /**
+     *esto es un scope
+     */
+    public function scopeSinImagen(Builder $query): void
+    {
+        $query->whereNull('imagen');
     }
 
 

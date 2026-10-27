@@ -1,157 +1,165 @@
  body {
-    font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-            color: #222;
-            min-height: 100vh;
-        }
+     font-family: Arial, sans-serif;
+     max-width: 900px;
+     margin: 40px auto;
+     padding: 0 20px;
+     color: #222;
+     min-height: 100vh;
+ }
 
-        article {
-            box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.20);
-            border-radius: 8px;
-        }
+ article {
+     box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.20);
+     border-radius: 8px;
+ }
 
-        nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
+ nav {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 10px;
+     margin-bottom: 25px;
+ }
 
-        a,
-        button {
-            text-decoration: none;
-            color: brown;
-        }
+ a,
+ button {
+     text-decoration: none;
+     color: brown;
+ }
 
-        .boton {
-            padding: 9px 14px;
-            border: 1px solid #bbb;
-            border-radius: 6px;
-            text-decoration: none;
-            background: #fff;
-            color: brown;
-        }
-
-
-        .pelicula {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 15px 0;
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .poster,
-        .sin-imagen {
-            width: 120px;
-            height: 170px;
-            border-radius: 6px;
-            flex: 0 0 120px;
-        }
-
-        .poster {
-            object-fit: cover;
-        }
-
-        .sin-imagen {
-            background: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: brown;
-            text-align: center;
-        }
-
-        .detalle-poster {
-            max-width: 250px;
-            max-height: 360px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        label {
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 8px;
-            margin-top: 5px;
-        }
-
-        textarea {
-            min-height: 100px;
-        }
-
-        .errores {
-            background: #fee;
-            border: 1px solid rgb(199, 157, 157);
-            padding: 12px 18px;
-            border-radius: 6px;
-        }
-
-        button {
-            background-color: white;
-            cursor: pointer;
-            border: none
-        }
-
-        .btn {
-            margin: 5px;
-        }
-
-        small {
-            display: block;
-            margin-top: 6px;
-            color: #555;
-        }
-
-        .card-footer,
-        .navbar {
-            background-color: brown;
-            color: white;
-        }
-
-        .card-footer {
-            margin-top: 10px;
-        }
-
-        li {
-            list-style: none;
-        }
-
-        #buscar{
-            width: 280px;
-            border-radius: 5px;
-            border: 1px solid rgb(201, 201, 201);
-        }
+ .boton {
+     padding: 9px 14px;
+     border: 1px solid #bbb;
+     border-radius: 6px;
+     text-decoration: none;
+     background: #fff;
+     color: brown;
+ }
 
 
-/* -------------------------------- para lo de tom select ------------------------------ */
-/* 1. Cambiar el borde y el color de fondo de la caja principal cuando está en foco */
-.ts-control.focus {
-    border-color: #c056b7;
-    box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.25);
-}
+ .pelicula {
+     border: 1px solid #ddd;
+     border-radius: 8px;
+     padding: 16px;
+     margin: 15px 0;
+     display: flex;
+     gap: 20px;
+     align-items: center;
+ }
 
-/* 2. Personalizar las "pastillas" o etiquetas de los actores seleccionados */
-.ts-control .item {
-    background-color: #e9ecef;
-    color: #289e2d;
-    border-radius: 4px;
-    padding: 2px 6px;
-}
+ .poster,
+ .sin-imagen {
+     width: 120px;
+     height: 170px;
+     border-radius: 6px;
+     flex: 0 0 120px;
+ }
 
-/* 3. Cambiar el diseño del menú desplegable de opciones */
-.ts-dropdown {
-    border-radius: 6px;
-    box-shadow: 0 4px 6px rgba(128, 60, 60, 0.1);
-}
+ .poster {
+     object-fit: cover;
+ }
+
+ .sin-imagen {
+     background: #eee;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: brown;
+     text-align: center;
+ }
+
+ .detalle-poster {
+     max-width: 250px;
+     max-height: 360px;
+     object-fit: cover;
+     border-radius: 8px;
+ }
+
+ label {
+     display: block;
+     margin-top: 15px;
+     font-weight: bold;
+ }
+
+ input,
+ textarea {
+     width: 100%;
+     box-sizing: border-box;
+     padding: 8px;
+     margin-top: 5px;
+ }
+
+ textarea {
+     min-height: 100px;
+ }
+
+ .errores {
+     background: #fee;
+     border: 1px solid rgb(199, 157, 157);
+     padding: 12px 18px;
+     border-radius: 6px;
+ }
+
+ button {
+     background-color: white;
+     cursor: pointer;
+     border: none
+ }
+
+ .btn {
+     margin: 5px;
+ }
+
+ small {
+     display: block;
+     margin-top: 6px;
+     color: #555;
+ }
+
+ .card-footer,
+ .navbar {
+     background-color: brown;
+     color: white;
+ }
+
+ .card-footer {
+     margin-top: 10px;
+ }
+
+ li {
+     list-style: none;
+ }
+
+ #buscar {
+     width: 280px;
+     border-radius: 5px;
+     border: 1px solid rgb(201, 201, 201);
+ }
+
+ #mostrar-resultados {
+     border-radius: 5px;
+     padding: 10px;
+     width: 280px;
+     box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.20);
+ }
+
+ #mostrar-resultados a {
+     color: rgb(0, 0, 0);
+ }
+
+ #mostrar-resultados li:hover {
+     border-radius: 5px;
+     cursor: pointer;
+     background-color: rgb(223, 219, 219);
+ }
+
+ .ts-control {
+     border: 1px solid gray;
+
+ }
+
+ /* -------------------------------- para lo de tom select ------------------------------ */
+
+ .ts-dropdown {
+     background:  radial-gradient(circle, red 10%, yellow 30%, #1e90ff 50%);
+     border-radius: 6px;
+     box-shadow: 0 4px 6px rgba(128, 60, 60, 0.1);
+ }

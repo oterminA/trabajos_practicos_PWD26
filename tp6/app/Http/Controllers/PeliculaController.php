@@ -153,15 +153,32 @@ class PeliculaController extends Controller
     }
 
     /**
-     *
+     * funcion que hace una respuesta json para usar ajax en js cuando el usuario busca un titulo
      */
     public function ajaxSearch(Request $request)
     {
-        $tituloBuscado = $request->input('buscar', ''); //desde la vista recupero el titulo o lo dejo como vacio x las dudas
+        $tituloBuscado = $request->input('titulo', ''); //acá tenog que poner 'titulo' porque en fetch es lo que usé "fetch(`/api/peliculas/buscar?titulo=${encodeURIComponent(tituloBuscado)}`" no tiene que ver con el input search
         $resultados = Pelicula::where('titulo', 'LIKE', "%{$tituloBuscado}%")->get();
         return response()->json([
             'success' => true,
             'peliculas' => $resultados
+        ]);
+    }
+
+
+    /**
+     *funcion que usa el scope del modelo
+     */
+    public function sinImagen()
+    {
+        return view('peliculas.index', [ //estos son los datos que necesito pasarle a la vista porq los va a necesitar
+            'peliculas' => Pelicula::sinImagen() //no uso la palabra scope porque las convenciones de laravel la borran
+                ->orderBy('titulo')
+                ->get(),
+            'generos'      => Pelicula::select('genero')->distinct()->pluck('genero'), //pluck y eso es para que no me de cosas repetidas creo
+            'titulo' => 'Peliculas sin imagen',
+            'activeFilter' => 'todos',
+            'modelo' => new Pelicula(),
         ]);
     }
 }

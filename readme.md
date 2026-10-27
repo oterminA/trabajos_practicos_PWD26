@@ -3,7 +3,8 @@
 ## Este repositorio contiene los trabajos prácticos realizados durante la cursada de Programación Web Dinámica (PWD) 2026.
 
 El objetivo de la materia es comprender cómo se construye una aplicación web, desde la elección de las tecnologías hasta su puesta en funcionamiento en un servidor web, incorporando progresivamente nuevas herramientas y conceptos.
-Cómo navegar por el repositorio.
+
+### Cómo navegar por el repositorio.
 
 En la raíz del repositorio se encuentra el archivo index.php, que funciona como índice de los trabajos prácticos realizados hasta el TP4. Desde allí se puede acceder a los distintos trabajos y navegar entre sus ejercicios. Cada ejercicio cuenta con una opción para volver al índice de trabajos prácticos.
 

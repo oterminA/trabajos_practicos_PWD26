@@ -24,6 +24,7 @@ Route::get('/peliculas/{id}', [PeliculaController::class, 'show'])->name('pelicu
 Route::get('/peliculas/{id}/editar', [PeliculaController::class, 'edit'])->name('peliculas.edit');
 Route::put('/peliculas/{id}', [PeliculaController::class, 'update'])->name('peliculas.update');
 Route::delete('/peliculas/{id}', [PeliculaController::class, 'destroy'])->name('peliculas.delete'); //ESTO no funcionó hasta que usé delete en lugar de put!!!!!
+Route::get('/peliculas-sin-imagen', [PeliculaController::class, 'sinImagen'])->name('peliculas.sinImagen');
 
 
 //para reseñas de PELICULAS

@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () { //hago lo del dom pa
                         const a = document.createElement('a');
 
                         a.href = `/peliculas/${pelicula.id}`;
-                        a.textContent = `${pelicula.titulo} (${pelicula.anio})`;
+                        a.textContent = `${pelicula.titulo} (${pelicula.anio})`; //lo muestro así porque me parece que no puedo mostrar el tituloFormateado
 
                         li.appendChild(a);
                         mostrarResultados.appendChild(li);
@@ -53,4 +53,5 @@ document.addEventListener("DOMContentLoaded", function () { //hago lo del dom pa
             }
         }
     });
+
 });
