@@ -38,19 +38,18 @@
             <input id="anio" type="number" name="anio" min="1895" max="{{ $maxYear }}"
                 value="{{ $pelicula->anio }}">
 
-             <div class="mb-3">
-            <label for="actores" class="form-label">Elenco:</label>
+            <div class="mb-3">
+                <label for="actores" class="form-label">Elenco:</label>
 
-            <!-- paso 2 para usar tom select como libreria -->
-            <select name="actor_ids[]" id="select-actores" multiple placeholder="Busca y selecciona actores..."
-                autocomplete="off">
-                @foreach ($actores as $actor)
-                    <option value="{{ $actor->id }}">
-                        {{ $actor->nombreFormateado}}
-                    </option>
-                @endforeach
-            </select>
-        </div>
+                <!-- paso 2 para usar tom select como libreria -->
+                <select name="actor_ids[]" id="select-actores" multiple autocomplete="off">
+                     @foreach ($actores as $actor)
+                        <option value="{{ $actor->id }}" {{ in_array($actor->id, old('actor_ids', isset($pelicula) ? $pelicula->actores->pluck('id')->toArray() : [])) ? 'selected' : '' }} data-foto="{{ asset('storage/' . $actor->imagen) }}">
+                            {{ $actor->nombreFormateado }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
             <label for="descripcion">Descripción(opcional)</label>
             <textarea id="descripcion" name="descripcion" maxlength="1000">{{ $pelicula->descripcion }}</textarea>

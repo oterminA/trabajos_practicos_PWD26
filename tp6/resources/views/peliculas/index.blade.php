@@ -20,18 +20,13 @@
     @endif
 
     @if (session('deletedPelicula'))
-            <div
-                style="padding: 14px 20px; margin-bottom: 24px; color: #fdfdfd; background-color: #eb5b48; border: 1px solid #c3e6cb; border-radius: 8px;">
-                {{ session('deletedPelicula') }}
-            </div>
-        @endif
+        <div
+            style="padding: 14px 20px; margin-bottom: 24px; color: #fdfdfd; background-color: #eb5b48; border: 1px solid #c3e6cb; border-radius: 8px;">
+            {{ session('deletedPelicula') }}
+        </div>
+    @endif
     <h2 class="display-5 text-center">{{ $titulo }}</h2>
     <nav class="nav">
-
-        <form action="{{ route('peliculas.buscar') }}" method="get">
-            <input type="search" name="buscar" id="buscar" placeholder="Buscar película por su título">
-            <button type="submit" class="boton btn btn-outline-light">Buscar</button>
-        </form>
 
         <form action="{{ route('peliculas.index') }}" method="get" id="formGenero">
             <input type="hidden" name="action" value="mostrarGeneros">
@@ -49,7 +44,15 @@
 
         <a class="boton" href="{{ route('peliculas.create') }}">Agregar pelicula</a>
         <a class="boton" href="{{ route('actors.create') }}">Cargar actor</a>
-    </nav>
+         </nav>
+        <form action="{{ route('peliculas.buscar') }}" method="get" id="formularioSearch">
+            <input type="search" name="buscar" id="buscar" placeholder="Buscar película por su título">
+            {{-- <button type="submit" class="boton btn btn-outline-light">Buscar</button> --}}
+            <div id="mostrar-resultados"></div>
+        </form>
+
+
+
 
     <hr>
 
@@ -68,10 +71,16 @@
             @endif
 
             <div>
-                <h3>{{ $pelicula->titulo }}</h3>
-                <p>{{ $pelicula->genero }} - {{ (int) $pelicula->anio }}</p>
-                <p>Reseñas: </p>
-                <p>Promedio de puntaje: </p>
+                <h3>{{ $pelicula->tituloFormateado }}</h3>
+                <p>{{ $pelicula->genero }} </p>
+                <p>Reseñas: {{ $pelicula->resenias_count }}</p>
+                <p>Promedio de puntaje:
+                    @if ($pelicula->promedioPuntaje == 0)
+                        Sin calificaciones
+                    @else
+                        {{ $pelicula->promedioPuntaje }} ★
+                    @endif
+                </p>
 
 
                 <div class="d-grid gap-2 d-md-block d-md-flex justify-content-md-end">

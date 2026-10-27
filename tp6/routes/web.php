@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 //para peliculas
 Route::get('/', [PeliculaController::class, 'index'])->name('peliculas.index');
-Route::get('/peliculas/buscar', [PeliculaController::class, 'search'])->name('peliculas.buscar');
+// Route::get('/peliculas/buscar', [PeliculaController::class, 'search'])->name('peliculas.buscar');
 Route::get('/peliculas/crear', [PeliculaController::class, 'create'])->name('peliculas.create');
 Route::post('/peliculas', [PeliculaController::class, 'store'])->name('peliculas.store');
 Route::get('/peliculas/{id}', [PeliculaController::class, 'show'])->name('peliculas.show');
@@ -38,3 +38,8 @@ Route::get('/actores/crear/', [ActorController::class, 'create'])->name('actors.
 Route::post('/actores', [ActorController::class, 'store'])->name('actors.store');
 
 
+
+
+//////////////// usando AJAX
+//peliculas
+Route::get('/api/peliculas/buscar', [PeliculaController::class, 'ajaxSearch'])->name('peliculas.buscar');

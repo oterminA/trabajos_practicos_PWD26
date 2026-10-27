@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        {{-- este es el css q quiero mantener para toda la pagina --}}
+
+    {{-- paso 1 para usar tom select como libreria --}}
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+
+    {{-- este es el css q quiero mantener para toda la pagina --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-     {{-- paso 1 para usar tom select como libreria --}}
-   <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
-
     @stack('styles')
     <title>{{ $title ?? '' }}</title>
 </head>
@@ -29,9 +29,6 @@
                         <a class="nav-link active text-light fw-bold"
                             href="{{ route('peliculas.index') }}">Peliculas</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link text-light fw-bold" href="{{ route('libros.index') }}">Libros</a>
-                    </li> --}}
                 </ul>
 
             </div>
@@ -42,14 +39,15 @@
     @yield('content')
 
     <footer class="card-footer text-center">
-        <p class="mb-0">Laravel | Blade | HTML | CSS | JS | PHP | Bootstrap </p>
+        <p class="mb-0">Laravel | Blade | HTML | CSS | JS | PHP | Bootstrap | Eloquent </p>
     </footer>
 
-    <!-- paso 1: cargo la libreria de tom select -->
+    <!-- paso 1 cargo la libreria-->
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
 
-    <!--esto permite q las vistas inyecten sus scripts -->
-    @stack('scripts')
+    <!-- y cargo el js donde voy a subir las cosas -->
+    <script src="{{ asset('js/js.js') }}"></script>
+    <script src="{{ asset('js/ajax.js') }}"></script>
 </body>
 
 </html>

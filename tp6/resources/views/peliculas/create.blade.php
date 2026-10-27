@@ -1,18 +1,4 @@
 ﻿@extends('layouts.peliculas', ['title' => 'Nueva pelicula'])
-@push('scripts')
-{{-- revisar si lo puedo poner en un script --}}
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        new TomSelect("#select-actores", {
-            create: false,
-            sortField: {
-                field: "text",
-                direction: "asc"
-            }
-        });
-    });
-</script>
-@endpush
 @section('content')
     <h2>Nueva pelicula</h2>
 
@@ -44,14 +30,14 @@
             <label for="actores" class="form-label">Elenco:</label>
 
             <!-- paso 2 para usar tom select como libreria -->
-            <select name="actor_ids[]" id="select-actores" multiple placeholder="Busca y selecciona actores..."
-                autocomplete="off">
-                @foreach ($actores as $actor)
-                    <option value="{{ $actor->id }}">
-                        {{ $actor->nombreFormateado}}
-                    </option>
-                @endforeach
-            </select>
+            <select name="actor_ids[]" id="select-actores" multiple autocomplete="off">
+                {{-- para multiples poner multiple --}}
+                    @foreach ($actores as $actor)
+                        <option value="{{ $actor->id }}" {{ in_array($actor->id, old('actor_ids', isset($pelicula) ? $pelicula->actores->pluck('id')->toArray() : [])) ? 'selected' : '' }} data-foto="{{ asset('storage/' . $actor->imagen) }}">
+                            {{ $actor->nombreFormateado }}
+                        </option>
+                    @endforeach
+                </select>
         </div>
 
         <label for="descripcion">Descripcion</label>

@@ -8,10 +8,13 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
+
 
 class ActorController extends Controller
 {
-    public function create(): View {
+    public function create(): View
+    {
         return view('actores.create');
     }
 
@@ -20,7 +23,13 @@ class ActorController extends Controller
         $validated = $request->validate([
             'nombre' => ['required', 'string', 'max:50'],
             'apellido' => ['required', 'string', 'max:50'],
+            'imagen'   => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:300'],
         ]);
+
+        if ($request->hasFile('imagen')) {
+            $validated['imagen'] = $request->file('imagen')->store('actores', 'public');
+        }
+
         Actor::create($validated);
 
         //redirecciono a peliculas porque no quiero crear una vista para actores

@@ -17,7 +17,7 @@ class Pelicula extends Model
 
     public function actores()
     {
-        return $this->belongsToMany(Actor::class, 'actor_pelicula');
+        return $this->belongsToMany(Actor::class, 'actor_pelicula'); //esto va en el lado n de la relación
     }
 
     protected $guarded = [
@@ -40,6 +40,18 @@ class Pelicula extends Model
             get: fn() => "{$this->titulo} ({$this->anio})"
         );
     }
+
+
+    /**
+     *atributo inteligente para mostrar el promedio de puntaje
+     */
+    protected function promedioPuntaje(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => round($this->attributes['resenias_avg_puntaje'] ?? $this->resenias()->avg('puntaje') ?? 0, 1)
+        );
+    }
+
 
     public function urlImagen(?string $ruta): ?string
     {

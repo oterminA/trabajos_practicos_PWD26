@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="{{ route('actors.store') }}" method="POST">
+    <form action="{{ route('actors.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <label for="nombre">Nombre</label>
@@ -22,6 +22,10 @@
 
         <label for="apellido">Apellido</label>
         <input id="apellido" name="apellido" value="{{ old('apellido') }}" required maxlength="50">
+
+        <label for="imagen">Imagen</label>
+        <input id="imagen" type="file" name="imagen" accept="image/jpeg,image/png,image/webp">
+        <small>JPG, PNG o WEBP. Maximo 300 KB.</small>
 
         <button class="btn btn-outline-secondary" type="submit">Guardar</button>
     </form>

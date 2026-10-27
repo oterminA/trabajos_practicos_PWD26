@@ -15,20 +15,25 @@ class PeliculaController extends Controller
     public function index(Request $request): View
     {
         return view('peliculas.index', [
-            'peliculas' => Pelicula::when($request->filled('genero'), function ($query) use ($request) {
-                return $query->where('genero', $request->genero);
-            })->when($request->filled('actor'), function ($query) use ($request) {
-                return $query->where('actor', $request->autor);
-            })
+            'peliculas' => Pelicula::withCount('resenias') //para q cada resenia triga su cantidad y lo recupero como resenias_count
+                ->withAvg('resenias', 'puntaje') //para lo del promediodde resenias
+                ->when($request->filled('genero'), function ($query) use ($request) {
+                    return $query->where('genero', $request->genero);
+                })
+                ->when($request->filled('actor'), function ($query) use ($request) {
+                    return $query->whereHas('actores', function ($q) use ($request) {
+                        $q->where('actores.id', $request->actor);
+                    });
+                })
                 ->orderBy('titulo')
                 ->get(),
+
             'generos' => Pelicula::select('genero')->distinct()->pluck('genero'),
             'actores' => Actor::orderBy('apellido')->get(),
             'titulo' => $request->filled('genero')
                 ? 'Películas de ' . $request->genero
                 : 'Catalogo de peliculas',
             'activeFilter' => $request->input('genero') ?? $request->input('actor', 'todos'),
-
             'modelo' => new Pelicula(),
         ]);
     }
@@ -57,22 +62,24 @@ class PeliculaController extends Controller
             'imagen'   => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:300'],
         ]);
 
+        $rutaImagen = null;
         if ($request->hasFile('imagen')) {
-            $validated['imagen'] = $request->file('imagen')->store('peliculas', 'public');
+            $rutaImagen = $request->file('imagen')->store('peliculas', 'public');
         }
 
         $pelicula = Pelicula::create([
             'titulo' => $validated['titulo'],
             'genero' => $validated['genero'],
             'anio' => (int) $validated['anio'],
-            'descripcion' => $validated['descripcion']
+            'descripcion' => $validated['descripcion'],
+            'imagen' => $rutaImagen,
         ]);
 
         if ($request->has('actor_ids')) {
             $pelicula->actores()->attach($request->actor_ids);
         }
 
-         return redirect()->route('peliculas.index')
+        return redirect()->route('peliculas.index')
             ->with('exitoPelicula', 'Pelicula creada con éxito!');
     }
 
@@ -142,6 +149,19 @@ class PeliculaController extends Controller
             'titulo' => 'Resultados para la búsqueda: "' . $tituloBuscado . '"',
             'activeFilter' => 'todos',
             'modelo' => new Pelicula(),
+        ]);
+    }
+
+    /**
+     *
+     */
+    public function ajaxSearch(Request $request)
+    {
+        $tituloBuscado = $request->input('buscar', ''); //desde la vista recupero el titulo o lo dejo como vacio x las dudas
+        $resultados = Pelicula::where('titulo', 'LIKE', "%{$tituloBuscado}%")->get();
+        return response()->json([
+            'success' => true,
+            'peliculas' => $resultados
         ]);
     }
 }

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Storage;
+
 
 class Actor extends Model
 {
@@ -16,6 +18,14 @@ class Actor extends Model
         'id'
     ];
 
+    public function urlImagen(?string $ruta): ?string
+    {
+        if ($ruta === null || $ruta === '') {
+            return null;
+        }
+
+        return Storage::disk('public')->url($ruta);
+    }
 
 
     /**
