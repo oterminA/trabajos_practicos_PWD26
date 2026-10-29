@@ -172,6 +172,13 @@
     border: 5px solid rgb(196, 194, 194);
  }
 
+ .resenias{
+    text-align: center;
+    padding: 10px;
+    overflow-y: scroll;
+    height: 455px;
+ }
+
  /* -------------------------------- para lo de tom select ------------------------------ */
 
  .ts-dropdown {

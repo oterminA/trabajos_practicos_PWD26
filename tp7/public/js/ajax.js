@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () { //hago lo del dom pa
     let abortController = null;
 
     //esta es la funcion con el listener escuchando el buscador
+    if (buscador) {
     buscador.addEventListener('input', async function () {
         let tituloBuscado = this.value; //recupero, entiendo yo, el elemento buscado q viene desde el control
         if (tituloBuscado.trim() === '') { //si el titulo es vacio
@@ -53,5 +54,5 @@ document.addEventListener("DOMContentLoaded", function () { //hago lo del dom pa
             }
         }
     });
-
+    }
 });

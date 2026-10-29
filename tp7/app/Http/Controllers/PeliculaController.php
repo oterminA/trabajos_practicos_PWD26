@@ -40,8 +40,12 @@ class PeliculaController extends Controller
 
     public function show(int $id): View
     {
-        $pelicula = Pelicula::with(['resenias', 'actores'])->findOrFail($id); //creo q esto es para no hacer dos consultas iguales y me de error
-        return view('peliculas.show', compact('pelicula'));
+        $pelicula = Pelicula::with(['actores', 'resenias.user'])->findOrFail($id);
+
+    return view('peliculas.show', [
+        'pelicula' => $pelicula,
+        'resenias' => $pelicula->resenias, //creo que esto funciopnaria para poder ver las resenias de esa pelicula en el mimso peliculas.show
+    ]);
     }
 
     public function create(): View
@@ -52,6 +56,7 @@ class PeliculaController extends Controller
             'maxYear' => now()->year + 5,
         ], compact('actores'));
     }
+
 
     public function store(Request $request): RedirectResponse
     {

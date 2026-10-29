@@ -15,7 +15,7 @@ class ReseniaController extends Controller
     public function index($pelicula_id): View
     {
         $pelicula = Pelicula::with('resenias.user')->findOrFail($pelicula_id); //aparentemente esto es lo de eager loading para que no haga ocnsultas innecesarias a la bd y me traiga los usuarios
-        return view('resenias.index', [
+        return view('peliculas.show', [ //locambie para q se muestren las resenias en la misma pagina que la peli
             'pelicula'     => $pelicula,
             'resenias'     => $pelicula->resenias,
             'titulo'       => 'Reseñas de ' . $pelicula->titulo,
@@ -32,7 +32,7 @@ class ReseniaController extends Controller
     }
 
 
-    public function store(Request $request, $pelicula_id): RedirectResponse
+    public function store(Request $request, $pelicula_id)
     {
         $validated = $request->validate([
             'comentario' => ['required', 'string', 'max:1000'],
@@ -41,14 +41,16 @@ class ReseniaController extends Controller
 
         $pelicula = Pelicula::findOrFail($pelicula_id);
 
-        $pelicula->resenias()->create([
+        $resenia = $pelicula->resenias()->create([
             'comentario' => $validated['comentario'],
             'puntaje' => $validated['puntaje'],
             'user_id' => auth()->id(), //le pongo el user autenticado
         ]);
 
-        return redirect()->route('peliculas.show', $pelicula_id)
-            ->with('exitoResenia', '¡Reseña creada con éxito!');
+        return response()->json([ //acá mando los datos al js
+            'success' => true,
+            'resenia' => $resenia
+        ]);
     }
 
 
@@ -59,7 +61,7 @@ class ReseniaController extends Controller
     {
         $this->authorize('delete', $resenia); //uso la funcion de reseniapolicy donde solo borra el admin o el dueño de la reseña
         $peliculaId = $resenia->pelicula_id; //traigo la pelicula asociada a esa
-        $resenia->delete();//borro la reseña
+        $resenia->delete(); //borro la reseña
 
         return redirect()->route('peliculas.show', $peliculaId)
             ->with('deletedResenia', 'Reseña eliminada con éxito');

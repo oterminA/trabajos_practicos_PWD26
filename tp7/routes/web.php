@@ -1,10 +1,8 @@
 <?php
 
 use App\Http\Controllers\ActorController;
-use App\Http\Controllers\LibroController;
 use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\ReseniaController;
-use App\Http\Controllers\ReseniaLibroController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,10 +26,10 @@ Route::get('/peliculas-sin-imagen', [PeliculaController::class, 'sinImagen'])->n
 
 
 //para reseñas de PELICULAS
-Route::get('/resenias-pelicula', [ReseniaController::class, 'index'])->name('resenias.index');
-Route::get('/resenias-pelicula/crear/{pelicula_id}', [ReseniaController::class, 'create'])->name('resenias.create');
+// Route::get('/resenias-pelicula', [ReseniaController::class, 'index'])->name('resenias.index');
+// Route::get('/resenias-pelicula/crear/{pelicula_id}', [ReseniaController::class, 'create'])->name('resenias.create');
 Route::post('/resenias-pelicula/guardar/{pelicula_id}', [ReseniaController::class, 'store'])->name('resenias.store');
-Route::get('/resenias/{pelicula_id}', [ReseniaController::class, 'index'])->name('resenias.inicio');
+// Route::get('/resenias/{pelicula_id}', [ReseniaController::class, 'index'])->name('resenias.inicio');
 //para borrar reseñas estando autorizados(?)
 Route::middleware('auth')->group(function () {
     Route::delete('/resenias/{resenia}', [ReseniaController::class, 'destroy'])->name('resenias.destroy');
@@ -57,6 +55,9 @@ Route::middleware('auth')->group(function () {
 });
 
 
-////////////////////////////////////////// usando AJAX
+////////////////////////////////////////// usando AJAX //////////////////////////////////////////
 //peliculas
 Route::get('/api/peliculas/buscar', [PeliculaController::class, 'ajaxSearch'])->name('peliculas.buscar');
+
+//resenias
+Route::post('/api/resenias-pelicula/crear/{pelicula_id}', [ReseniaController::class, 'store'])->name('resenias.store');
