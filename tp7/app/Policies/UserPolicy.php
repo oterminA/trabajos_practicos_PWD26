@@ -46,22 +46,4 @@ class UserPolicy
     {
         return false;
     }
-
-    /**
-     * esto es una policy para que solo el admin pueda crear actores
-     */
-    public function createActor(User $user): bool
-    {
-        // Retorna true solo si el rol del usuario es 'admin'
-        return $user->rol === 'admin';
-    }
-
-    /**
-     * esto es una policy para que solo el admin pueda crear peliculas
-     */
-    public function createPelicula(User $user): bool
-    {
-        // Retorna true solo si el rol del usuario es 'admin'
-        return $user->rol === 'admin';
-    }
 }

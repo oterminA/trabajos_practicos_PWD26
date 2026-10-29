@@ -16,6 +16,13 @@
         </div>
     @endif
 
+        @if (session('deletedResenia'))
+        <div
+            style="padding: 14px 20px; margin-bottom: 24px; color: #fdfdfd; background-color: #eb5b48; border: 1px solid #c3e6cb; border-radius: 8px;">
+            {{ session('deletedResenia') }}
+        </div>
+    @endif
+
     @if ($pelicula)
         @if ($url = $pelicula->urlImagen($pelicula->imagen))
             <img class="detalle-poster" src="{{ Storage::url($pelicula->imagen) }}" alt="Poster de {{ $pelicula->titulo }}">

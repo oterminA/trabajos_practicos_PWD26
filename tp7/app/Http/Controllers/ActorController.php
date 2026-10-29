@@ -15,11 +15,14 @@ class ActorController extends Controller
 {
     public function create(): View
     {
+        $this->authorize('create', Actor::class);
         return view('actores.create');
     }
 
     public function store(Request $request): RedirectResponse
     {
+        $this->authorize('create', Actor::class);
+
         $validated = $request->validate([
             'nombre' => ['required', 'string', 'max:50'], //cómo puedo hacer el unique acá?
             'apellido' => ['required', 'string', 'max:50'],

@@ -15,8 +15,6 @@
 
     <form action="{{ route('resenias.store', $pelicula->id) }}" method="POST" >
         @csrf
-        <label for="nombreUsuario">Nombre de usuario</label>
-        <input type="text" id="nombreUsuario" name="nombreUsuario" value="{{ old('nombreUsuario') }}" required maxlength="50">
 
         <label for="comentario">Comentario(en 1000 caracteres)</label>
         <textarea id="comentario" name="comentario" value="{{ old('comentario') }}" required maxlength="1000"></textarea>

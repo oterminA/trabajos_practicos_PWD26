@@ -13,7 +13,7 @@ class Resenia extends Model
         return $this->belongsTo(Pelicula::class, 'pelicula_id'); //esto es lo que necesito para conectar las tablas del lado del MODELO
     }
 
-    public function usuario()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id'); //esto es lo que necesito para conectar las tablas del lado del MODELO
     }

@@ -50,11 +50,13 @@
         </form>
 
 
-        @if (auth()->check() && auth()->user()->rol === 'admin')
-            <a class="boton" href="{{ route('peliculas.create') }}"> ➕ Agregar pelicula</a>
+        @can('create', App\Models\Actor::class)
             <a class="boton" href="{{ route('actors.create') }}">🎭 Cargar actor</a>
-        @endif
+        @endcan
 
+        @can('create', App\Models\Pelicula::class)
+            <a class="boton" href="{{ route('peliculas.create') }}"> ➕ Agregar pelicula</a>
+        @endcan
 
         <a class="boton" href="{{ route('peliculas.sinImagen') }}">🎬 Peliculas sin imagen</a>
 

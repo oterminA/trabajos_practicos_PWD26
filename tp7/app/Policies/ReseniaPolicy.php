@@ -33,19 +33,19 @@ class ReseniaPolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * esta policy es para que solo el user dueño de la resnia o el admin la pueda modificar
      */
-    public function update(User $user, Resenia $resenia): bool
+    public function update(User $user, Resenia $resena): bool
     {
-        return false;
+        return $user->id === $resena->user_id || $user->rol === 'admin';
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * eesta policy es para que soloel admin o dueño de la resenia la pueda borrar
      */
     public function delete(User $user, Resenia $resenia): bool
     {
-        return false;
+        return (int) $user->id === (int) $resenia->user_id || $user->rol === 'admin';
     }
 
     /**

@@ -46,6 +46,7 @@ class PeliculaController extends Controller
 
     public function create(): View
     {
+        $this->authorize('create', Pelicula::class);
         $actores = Actor::orderBy('apellido')->get(); //recupero los actores para mandarlos al form de pelicula
         return view('peliculas.create', [
             'maxYear' => now()->year + 5,
@@ -54,6 +55,7 @@ class PeliculaController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        $this->authorize('create', Pelicula::class);
         $validated = $request->validate([
             'titulo' => ['required', 'string', 'max:120', 'unique:peliculas,titulo'],
             'genero' => ['required', 'string', 'max:80'],

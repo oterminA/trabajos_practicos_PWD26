@@ -27,11 +27,21 @@
                         👤
                     </a>
                     <ul class="dropdown-menu">
+                        {{-- esto es para mostrar un cartel con el nombre del usuario asi ya sé quien es xd, para eso uso el helper @auth que sabe q el user está disponible globalmente en las vistas de la app --}}
+                        @auth
+                            <li><span class="dropdown-item-text"><strong><i>Hola, {{ auth()->user()->user }}!</span></i></strong>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                        @endauth
+
                         <li><a class="dropdown-item" href="{{ route('login') }}">Iniciar sesión</a></li>
 
-                        @if (auth()->check() && auth()->user()->rol === 'admin')
+                        {{-- asi uso las policies, esta está en userpolicy --}}
+                        @can('create', App\Models\User::class)
                             <li><a class="dropdown-item" href="{{ route('users.create') }}">Crear usuario</a></li>
-                        @endif
+                        @endcan
 
                         <li><a class="dropdown-item" href="{{ route('users.logout') }}">Cerrar sesión</a></li>
 

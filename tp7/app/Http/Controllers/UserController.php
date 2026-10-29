@@ -15,6 +15,7 @@ class UserController extends Controller
 {
     //index, store, create, update, edit, destroy, show
 
+
     /**
      *esta funcion redirige al login
      */
@@ -58,12 +59,14 @@ class UserController extends Controller
 
     public function create(): View
     {
+        $this->authorize('create', User::class);
         return view('users.create');
     }
 
 
     public function store(Request $request): RedirectResponse
     {
+        $this->authorize('create', User::class);
         $request->validate([
             'user' => ['required', 'string', 'min:5', 'max:10', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'max:12'],

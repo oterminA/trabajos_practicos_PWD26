@@ -14,8 +14,7 @@ class ReseniaController extends Controller
 
     public function index($pelicula_id): View
     {
-        $pelicula = Pelicula::with('resenias')->findOrFail($pelicula_id);
-
+        $pelicula = Pelicula::with('resenias.user')->findOrFail($pelicula_id); //aparentemente esto es lo de eager loading para que no haga ocnsultas innecesarias a la bd y me traiga los usuarios
         return view('resenias.index', [
             'pelicula'     => $pelicula,
             'resenias'     => $pelicula->resenias,
@@ -36,15 +35,33 @@ class ReseniaController extends Controller
     public function store(Request $request, $pelicula_id): RedirectResponse
     {
         $validated = $request->validate([
-            'nombreUsuario' => ['required', 'string', 'max:50', 'unique:resenias, nombreUsuario'],
             'comentario' => ['required', 'string', 'max:1000'],
             'puntaje' => ['required', 'integer', 'min:1', 'max:5']
         ]);
 
         $pelicula = Pelicula::findOrFail($pelicula_id);
-        $pelicula->resenias()->create($validated); //para que la relacion asigne el id
+
+        $pelicula->resenias()->create([
+            'comentario' => $validated['comentario'],
+            'puntaje' => $validated['puntaje'],
+            'user_id' => auth()->id(), //le pongo el user autenticado
+        ]);
 
         return redirect()->route('peliculas.show', $pelicula_id)
             ->with('exitoResenia', '¡Reseña creada con éxito!');
+    }
+
+
+    /**
+     *
+     */
+    public function destroy(Resenia $resenia)
+    {
+        $this->authorize('delete', $resenia); //uso la funcion de reseniapolicy donde solo borra el admin o el dueño de la reseña
+        $peliculaId = $resenia->pelicula_id; //traigo la pelicula asociada a esa
+        $resenia->delete();//borro la reseña
+
+        return redirect()->route('peliculas.show', $peliculaId)
+            ->with('deletedResenia', 'Reseña eliminada con éxito');
     }
 }

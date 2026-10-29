@@ -32,6 +32,10 @@ Route::get('/resenias-pelicula', [ReseniaController::class, 'index'])->name('res
 Route::get('/resenias-pelicula/crear/{pelicula_id}', [ReseniaController::class, 'create'])->name('resenias.create');
 Route::post('/resenias-pelicula/guardar/{pelicula_id}', [ReseniaController::class, 'store'])->name('resenias.store');
 Route::get('/resenias/{pelicula_id}', [ReseniaController::class, 'index'])->name('resenias.inicio');
+//para borrar reseñas estando autorizados(?)
+Route::middleware('auth')->group(function () {
+    Route::delete('/resenias/{resenia}', [ReseniaController::class, 'destroy'])->name('resenias.destroy');
+});
 
 
 //para actors
