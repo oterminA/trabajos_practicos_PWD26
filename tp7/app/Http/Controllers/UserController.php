@@ -68,7 +68,7 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class);
         $request->validate([
-            'user' => ['required', 'string', 'min:5', 'max:10', 'unique:users'],
+            'user' => ['required', 'string', 'min:5', 'max:10', 'unique:users,user'],
             'password' => ['required', 'string', 'min:8', 'max:12'],
         ]);
 

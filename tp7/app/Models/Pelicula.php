@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Builder;
-
+use Illuminate\Database\Eloquent\SoftDeletes; //para lo de borrado logico
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pelicula extends Model
 {
+    use SoftDeletes; //para lo de borrado logico
+    use HasFactory;
+
     public function resenias()
     {
         return $this->hasMany(Resenia::class, 'pelicula_id'); //esto va en el lado 1 de la relación 1:n

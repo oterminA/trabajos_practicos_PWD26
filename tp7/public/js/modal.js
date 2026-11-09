@@ -1,9 +1,9 @@
 //codigo q tiene lo del modal y el ajax asociado a la creacion de reseña
+async function abrirModalResenia(boton) {
+    const peliculaId = boton.getAttribute('data-pelicula-id');
 
-function abrirModalResenia(boton) {
-    const peliculaId = boton.getAttribute('data-pelicula-id'); //recuero el id de la peli
-
-    Swal.fire({ //acá empieza lo de sweetalert2
+    // sweetAlert2 maneja promesas, así que también puedo usar await para esperar el resultado
+    const result = await Swal.fire({
         title: 'Dejar reseña',
         html: `
             <textarea id="swal-comentario" class="swal2-textarea" placeholder="Comentario"></textarea>
@@ -27,41 +27,43 @@ function abrirModalResenia(boton) {
                 comentario: comentario,
                 puntaje: puntaje,
                 pelicula_id: peliculaId
-            }
-        }
-    }).then((result) => {
-        if (result.isConfirmed) { //si se pudo hacer lo del modal
-            const datos = result.value;
-
-            fetch(`/api/resenias-pelicula/crear/${peliculaId}`, { //acá empieza lo de ajax, esta es la url de la ruta
-                method: 'POST', //post porque estoy modificando el servidor
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') //entiendo que tengo que poner esto porque es un formulario y sino laravel no me deja + tuve q poner un coso en el head del layout pelicula
-                },
-                body: JSON.stringify(datos) //paso los datos a json
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Reseña publicada',
-                        timer: 1500,
-                        showConfirmButton: false
-                    });
-
-                    setTimeout(() => {
-                        location.reload();
-                    }, 1500);
-                } else { //si hubo un error al guardar la reseña
-                    Swal.fire('Error', 'No se pudo guardar la reseña.', 'error');
-                }
-            }) //por si hay un error para manejar
-            .catch(error => {
-                console.error('Error:', error);
-                Swal.fire('Error', 'Ocurrió un error inesperado.', 'error');
-            });
+            };
         }
     });
+
+    //si el user confirmó el modal hago el fetch de ajax
+    if (result.isConfirmed) {
+        const datos = result.value;
+
+        try {
+            const response = await fetch(`/api/resenias-pelicula/crear/${peliculaId}`, {
+                method: 'POST', //post xq estoy modificando elementos de la base de datos
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') //esto es x seguridad de laravel
+                },
+                body: JSON.stringify(datos) //para pasaar a json los datos
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                await Swal.fire({
+                    icon: 'success',
+                    title: 'Reseña publicada',
+                    timer: 1000, //esto representa el tiempo en que se muestra el cartelito de success o sea cuánto tiempo se mantiene
+                    showConfirmButton: false
+                });
+
+                setTimeout(() => {
+                    location.reload();
+                }, 100); //esto representa el tiempo que se tarda en 'recargar' la pagina o sea en cuanto tiempo aparece la reseña agregada recien
+            } else {
+                Swal.fire('Error', 'No se pudo guardar la reseña.', 'error');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            Swal.fire('Error', 'Ocurrió un error inesperado.', 'error');
+        }
+    }
 }

@@ -108,7 +108,7 @@ class PeliculaController extends Controller
     {
         $pelicula = Pelicula::findOrFail($id);
         $validated = $request->validate([
-            'titulo' => ['string', 'max:120'],
+            'titulo' => ['string', 'max:120', 'unique:peliculas,titulo,' . $id], //esto serviria para poder validar que no se repita el nombre tambien en el update, usando ($id) asi laravel no lo chequea en la base de datos y no me da problemas porque no ve que el id ya existe
             'genero' => ['string', 'max:80'],
             'anio' => ['integer', 'min:1895', 'max:' . (now()->year + 5)],
             'descripcion' => ['string', 'max:1000'],

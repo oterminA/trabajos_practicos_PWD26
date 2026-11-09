@@ -4,9 +4,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;//para lo de borrado logico
 
 class Resenia extends Model
 {
+    use SoftDeletes;//para lo de borrado logico
 
     public function pelicula()
     {

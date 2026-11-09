@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 ///put     -> UPDATE
 ///post    -> CREATE, EDIT
 
+
 //para peliculas
 Route::get('/', [PeliculaController::class, 'index'])->name('peliculas.index');
 // Route::get('/peliculas/buscar', [PeliculaController::class, 'search'])->name('peliculas.buscar');
