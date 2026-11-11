@@ -28,6 +28,8 @@
                 @if ($url = $pelicula->urlImagen($pelicula->imagen))
                     <img class="detalle-poster" src="{{ Storage::url($pelicula->imagen) }}"
                         alt="Poster de {{ $pelicula->titulo }}">
+                @else
+                    <div class="sin-imagen detalle-poster">Sin imagen</div>
                 @endif
 
                 <h2>{{ $pelicula->titulo }}</h2>
@@ -69,7 +71,7 @@
                                 onsubmit="return confirm('¿Estás seguro de eliminar esta reseña?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">🗑️</button>
+                                <button class="btn" type="submit">🗑️</button>
                             </form>
                         @endcan
                         <div>

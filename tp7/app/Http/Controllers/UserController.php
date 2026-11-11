@@ -59,14 +59,12 @@ class UserController extends Controller
 
     public function create(): View
     {
-        $this->authorize('create', User::class);
         return view('users.create');
     }
 
 
     public function store(Request $request): RedirectResponse
     {
-        $this->authorize('create', User::class);
         $request->validate([
             'user' => ['required', 'string', 'min:5', 'max:10', 'unique:users,user'],
             'password' => ['required', 'string', 'min:8', 'max:12'],
@@ -78,6 +76,7 @@ class UserController extends Controller
         $usuario->password = Hash::make($request->input('password'));  //esto es para q no me de problema con bcrypt
 
         $usuario->save();
+        Auth::login($usuario);
 
         return redirect()->route('peliculas.index')
             ->with('exitoUsuario', 'Usuario creado con éxito!');

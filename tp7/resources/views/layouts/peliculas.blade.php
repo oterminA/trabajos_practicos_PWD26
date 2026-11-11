@@ -30,25 +30,24 @@
                     <ul class="dropdown-menu">
                         {{-- esto es para mostrar un cartel con el nombre del usuario asi ya sé quien es xd, para eso uso el helper @auth que sabe q el user está disponible globalmente en las vistas de la app --}}
                         @auth
-                            <li><span class="dropdown-item-text"><strong><i>Hola,
-                                            {{ auth()->user()->user }}!</span></i></strong>
+                            <li>
+                                <span class="dropdown-item-text">
+                                    <strong><i>Hola, {{ auth()->user()->user }}!</i></strong>
+                                </span>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+                            <li><a class="dropdown-item" href="{{ route('users.logout') }}">Cerrar sesión</a></li>
                         @endauth
 
-                        <li><a class="dropdown-item" href="{{ route('login') }}">Iniciar sesión</a></li>
-
-                        {{-- asi uso las policies, esta está en userpolicy --}}
-                        @can('create', App\Models\User::class)
-                            <li><a class="dropdown-item" href="{{ route('users.create') }}">Crear usuario</a></li>
-                        @endcan
-
-                        <li><a class="dropdown-item" href="{{ route('users.logout') }}">Cerrar sesión</a></li>
-
+                        @guest
+                            <li><a class="dropdown-item" href="{{ route('login') }}">Iniciar sesión</a></li>
+                            <li><a class="dropdown-item" href="{{ route('users.create') }}">Registrarse</a></li>
+                        @endguest
                     </ul>
-                </li>
+            </ul>
+            </li>
             </ul>
 
         </div>
@@ -60,8 +59,7 @@
 
                 <ul class="navbar-nav d-flex flex-row justify-content-center gap-3">
                     <li class="nav-item">
-                        <a class="nav-link active text-light fw-bold"
-                            href="{{ route('peliculas.index') }}">Peliculas</a>
+                        <a class="nav-link active text-light fw-bold" href="{{ route('peliculas.index') }}">Catálogo</a>
                     </li>
                 </ul>
 
@@ -69,11 +67,36 @@
         </nav>
     </header>
 
+    {{-- esto es para armar el estilo del chatbot --}}
+    <div id="chat-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <button id="chat-toggle" class="btn btn-secondary rounded-circle shadow">🗯️</button>
+
+        <div id="chat-box" class="card shadow"
+            style="display: none; width: 350px; height: 450px; flex-direction: column;">
+            <div class="card-header bg-danger text-white d-flex justify-content-between">
+                <span>PeliBot</span>
+                <button id="chat-close" class="btn-close btn-close-white"></button>
+            </div>
+            <div id="chat-mensajes" class="card-body overflow-auto flex-grow-1" style="font-size: 0.9rem;">
+                <p class="text-muted">¡Hola! Soy <i><strong>PeliBot</strong></i> y tengo las respuestas del universo...</p>
+                <p class="text-muted"> ...En realidad solo tengo respuestas programadas pero ¿En qué te ayudo?</p>
+            </div>
+            <div class="card-footer p-2">
+                <form id="chat-form" class="d-flex">
+                    <input type="text" id="chat-input" class="form-control form-control-sm me-1"
+                        placeholder="Escribí tu consulta..." required>
+                    <button type="submit" class="btn btn-sm btn-secondary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     {{-- aca va a ir todo el contenido de las demás páginas --}}
     @yield('content')
 
     <footer class="card-footer text-center">
-        <p class="mb-0">Laravel | Blade | HTML | CSS | JS | PHP | Bootstrap | Eloquent | SweetAlert2 | Tom Select</p>
+        <p class="mb-0">Laravel | Blade | HTML | CSS | JS | PHP | Bootstrap | Eloquent | SweetAlert2 | Tom Select |
+            ChatBot</p>
     </footer>
 
     <!-- Bootstrap JS Bundle xra dropdowns y modales -->

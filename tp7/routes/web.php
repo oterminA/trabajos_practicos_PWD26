@@ -4,6 +4,7 @@ use App\Http\Controllers\ActorController;
 use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\ReseniaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PreguntaController;
 use Illuminate\Support\Facades\Route;
 
 //LAS URL+METODO HTTP NO SE PUEDEN REPETIR!!!!
@@ -42,21 +43,26 @@ Route::get('/actores/crear/', [ActorController::class, 'create'])->name('actors.
 Route::post('/actores', [ActorController::class, 'store'])->name('actors.store');
 
 
+//para el chatbot
+Route::post('/chat/enviar', [PreguntaController::class, 'responder']);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////// usando MIDDLEWARE //////////////////////////////////////////
 //para users
-//(no logueados)
 Route::middleware('guest')->group(function () {
     Route::get('/cuenta-ingresar', [UserController::class, 'login'])->name('login');
-    Route::post('/cuenta-ingresar', [UserController::class, 'autenticar'])->name('users.autenticar');
-});
-// usuarios logueados
-Route::middleware('auth')->group(function () {
-    Route::get('/cuenta-cerrar', [UserController::class, 'logout'])->name('users.logout');
     Route::get('/cuenta-crear', [UserController::class, 'create'])->name('users.create');
     Route::post('/cuenta-guardar', [UserController::class, 'store'])->name('users.store');
+    Route::post('/cuenta-ingresar', [UserController::class, 'autenticar'])->name('users.autenticar');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/cuenta-cerrar', [UserController::class, 'logout'])->name('users.logout');
+});
 
-////////////////////////////////////////// usando AJAX //////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////// usando AJAX ///////////////////////////////////////////////
+
 //peliculas
 Route::get('/api/peliculas/buscar', [PeliculaController::class, 'ajaxSearch'])->name('peliculas.buscar');
 

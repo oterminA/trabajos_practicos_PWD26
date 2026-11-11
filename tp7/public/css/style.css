@@ -1,188 +1,213 @@
- body {
-     font-family: Arial, sans-serif;
-     max-width: 900px;
-     margin: 40px auto;
-     padding: 0 20px;
-     color: #222;
-     min-height: 100vh;
- }
+:root {
+    --primary-color: #8b0000;
+    --primary-hover: #a52a2a;
+    --text-main: #1a1a1a;
+    --text-muted: #666666;
+    --border-color: #e2e8f0;
+    --bg-body: #f8fafc;
+    --card-bg: #ffffff;
+}
 
- article {
-     box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.20);
-     border-radius: 8px;
- }
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: var(--text-main);
+    background-color: var(--bg-body);
+    min-height: 100vh;
+    line-height: 1.5;
+}
 
- nav {
-     display: flex;
-     flex-wrap: wrap;
-     gap: 10px;
-     margin-bottom: 25px;
- }
+article {
+    box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.20);
+    border-radius: 8px;
+}
 
- a,
- button {
-     text-decoration: none;
-     color: brown;
- }
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    padding-top: 20px;
+}
 
- .boton {
-     padding: 9px 14px;
-     border: 1px solid #bbb;
-     border-radius: 6px;
-     text-decoration: none;
-     background: #fff;
-     color: brown;
- }
+li {
+    list-style: none;
+}
+
+/* enlaces y botones */
+a,
+button {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+.boton {
+    padding: 9px 14px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    text-decoration: none;
+    background: #fff;
+    color: var(--primary-color);
+}
+
+.boton:hover,
+button:hover {
+    border-color: var(--primary-color);
+}
+
+.btn {
+    margin: 5px;
+    color: var(--primary-color);
+}
 
 
- .pelicula {
-     border: 1px solid #ddd;
-     border-radius: 8px;
-     padding: 16px;
-     margin: 15px 0;
-     display: flex;
-     gap: 20px;
-     align-items: center;
- }
+.pelicula {
+    background-color: var(--card-bg);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 16px 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
 
- .poster,
- .sin-imagen {
-     width: 120px;
-     height: 170px;
-     border-radius: 6px;
-     flex: 0 0 120px;
- }
+.poster,
+.sin-imagen,
+#no-imagen-show {
+    width: 120px;
+    height: 170px;
+    border-radius: 6px;
+    flex: 0 0 120px;
+}
 
- .poster {
-     object-fit: cover;
- }
+.poster {
+    object-fit: cover;
+}
 
- .sin-imagen {
-     background: #eee;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     color: brown;
-     text-align: center;
- }
+.sin-imagen {
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: brown;
+    text-align: center;
+}
 
- .detalle-poster {
-     max-width: 250px;
-     max-height: 360px;
-     object-fit: cover;
-     border-radius: 8px;
- }
+.detalle-poster {
+    max-width: 250px;
+    max-height: 360px;
+    object-fit: cover;
+    border-radius: 8px;
+}
 
- label {
-     display: block;
-     margin-top: 15px;
-     font-weight: bold;
- }
+.resenias {
+    text-align: center;
+    padding: 10px;
+    overflow-y: auto;
+    height: 455px;
+}
 
- input,
- textarea {
-     width: 100%;
-     box-sizing: border-box;
-     padding: 8px;
-     margin-top: 5px;
- }
 
- textarea {
-     min-height: 100px;
- }
+/* formualrios */
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
 
- .errores {
-     background: #fee;
-     border: 1px solid rgb(199, 157, 157);
-     padding: 12px 18px;
-     border-radius: 6px;
- }
+input,
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    margin-top: 5px;
+}
 
- button {
-     background-color: white;
-     cursor: pointer;
-     border: none
- }
+textarea {
+    min-height: 100px;
+}
 
- .btn {
-     margin: 5px;
- }
+.errores {
+    background: #fee;
+    border: 1px solid rgb(199, 157, 157);
+    padding: 12px 18px;
+    border-radius: 6px;
+}
 
- small {
-     display: block;
-     margin-top: 6px;
-     color: #555;
- }
+small {
+    display: block;
+    margin-top: 6px;
+    color: #555;
+}
 
- .card-footer,
- .navbar {
-     background-color: brown;
-     color: white;
- }
 
- .card-footer {
-     margin-top: 10px;
- }
+.card-footer,
+.navbar {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+}
 
- li {
-     list-style: none;
- }
+.card-footer {
+    margin-top: 10px;
+}
 
- #buscar {
-     width: 280px;
-     border-radius: 5px;
-     border: 1px solid rgb(201, 201, 201);
- }
+#buscar {
+    width: 280px;
+    border-radius: 5px;
+    border: 1px solid rgb(201, 201, 201);
+}
 
- #mostrar-resultados {
-     border-radius: 5px;
-     padding: 10px;
-     width: 280px;
-     box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.20);
- }
+#mostrar-resultados {
+    border-radius: 5px;
+    padding: 10px;
+    width: 280px;
+    height: 30px;
+    overflow-y: auto;
+}
 
- #mostrar-resultados a {
-     color: rgb(0, 0, 0);
- }
+#mostrar-resultados a {
+    color: rgb(0, 0, 0);
+}
 
- #mostrar-resultados li:hover {
-     border-radius: 5px;
-     cursor: pointer;
-     background-color: rgb(223, 219, 219);
- }
+#mostrar-resultados li:hover {
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(223, 219, 219);
+}
 
- .ts-control {
-     border: 1px solid gray;
- }
-
- #sesionBoton{
+#sesionBoton {
     background-color: white;
     padding: 5px;
-    border-radius: 5px;
-    border: 1px solid black;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
     margin: 10px;
     width: 50px;
     height: 40px;
- }
+}
 
- #imagenMsn{
+#imagenMsn {
     width: 150px;
     height: 150px;
     border-radius: 8px;
     border: 5px solid rgb(196, 194, 194);
- }
+}
 
- .resenias{
-    text-align: center;
-    padding: 10px;
-    overflow-y: scroll;
-    height: 455px;
- }
+/* tom select */
+.ts-control {
+    border: 1px solid gray;
+}
 
- /* -------------------------------- para lo de tom select ------------------------------ */
-
- .ts-dropdown {
-     background:  radial-gradient(circle, red 10%, yellow 30%, #1e90ff 50%);
-     border-radius: 6px;
-     box-shadow: 0 4px 6px rgba(128, 60, 60, 0.1);
- }
+.ts-dropdown {
+    background: radial-gradient(circle, rgba(226, 232, 240, 1) 0%, rgba(214, 171, 171, 1) 100%);
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(128, 60, 60, 0.1);
+}

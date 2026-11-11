@@ -62,7 +62,7 @@
 
     </nav>
     <form action="{{ route('peliculas.buscar') }}" method="get" id="formularioSearch">
-        <input type="search" name="buscar" id="buscar" placeholder=" 🔍 Buscar película por su título">
+        <input type="search" name="buscar" id="buscar" placeholder=" 🔍 Buscar película por su título" autocomplete="off">
         {{-- <button type="submit" class="boton btn btn-outline-light">Buscar</button> --}}
         <div id="mostrar-resultados"></div>
     </form>
@@ -100,16 +100,16 @@
 
 
                 <div class="d-grid gap-2 d-md-block d-md-flex justify-content-md-end">
-                    <a href="{{ route('peliculas.show', $pelicula->id) }}">| Ver detalle |</a>
+                    <a href="{{ route('peliculas.show', $pelicula->id) }}" class="btn">| Ver detalle |</a>
 
                     @if (auth()->check() && auth()->user()->rol === 'admin')
-                        <a href="{{ route('peliculas.edit', $pelicula->id) }}">| Editar datos |</a>
+                        <a href="{{ route('peliculas.edit', $pelicula->id) }}" class="btn">| Editar datos |</a>
 
                         <form action="{{ route('peliculas.delete', $pelicula->id) }}" method="POST"
                             onsubmit="return confirm('¿Estás seguro de eliminar esta película?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">| Eliminar |</button>
+                            <button type="submit" class="btn">| Eliminar |</button>
                         </form>
                     @endif
                 </div>
