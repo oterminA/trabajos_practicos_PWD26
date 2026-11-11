@@ -21,12 +21,13 @@ A partir del TP5 cambia la forma de ejecutar los proyectos. Para acceder a los t
 *php artisan serve*
 
 El comando debe ejecutarse desde la carpeta del proyecto Laravel que se desea visualizar. Una vez iniciado el servidor, se debe ingresar a la dirección local que indique la terminal.
-Estructura del repositorio
 
-#### El repositorio está organizado para mostrar la evolución de los contenidos y las tecnologías trabajadas durante la cursada.
+### Estructura del repositorio
+
+ El repositorio está organizado para mostrar la evolución de los contenidos y las tecnologías trabajadas durante la cursada.
 
     * Hasta el TP4: los ejercicios se desarrollan principalmente con HTML, CSS, JavaScript y PHP. Se utiliza index.php como índice general y los formularios permiten enviar información mediante los métodos GET y POST.
-    * TP5, TPEloquent y TP6: cada trabajo práctico cuenta con su propio espacio y estructura de proyecto Laravel. Dentro de estas carpetas se encuentran los directorios y archivos correspondientes a cada aplicación, incluidas las dependencias y la estructura generada y administrada por Composer.
+    * TP5, TPEloquent, TP6 y TP7: cada trabajo práctico cuenta con su propio espacio y estructura de proyecto Laravel. Dentro de estas carpetas se encuentran los directorios y archivos correspondientes a cada aplicación, incluidas las dependencias y la estructura generada y administrada por Composer.
 
 *Esta organización es intencional:* cada trabajo práctico conserva una etapa diferente del aprendizaje. De esta manera, es posible recorrer la progresión de los temas vistos en clase y consultar las distintas implementaciones realizadas durante la cursada. Si todos los trabajos se integraran en una única versión de la aplicación, se perdería la posibilidad de observar cómo fueron evolucionando los contenidos y las soluciones a lo largo del tiempo.
 
@@ -49,6 +50,3 @@ A partir del TP5, se comienza a trabajar con la estructura que propone Laravel, 
 
 Cada proyecto mantiene su propia estructura y sus dependencias para que sea posible estudiar y ejecutar las distintas etapas de manera independiente.
 
----
-
-**Importante:** para ejecutar los trabajos prácticos desarrollados con Laravel, hay que ubicarse en la carpeta del TP correspondiente antes de utilizar php artisan serve. El servidor iniciado desde la raíz con php -S localhost:8000 permite recorrer el índice y los ejercicios tradicionales hasta el TP4, pero no reemplaza el servidor propio de cada proyecto Laravel.
