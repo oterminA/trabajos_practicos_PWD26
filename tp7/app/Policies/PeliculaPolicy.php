@@ -34,21 +34,20 @@ class PeliculaPolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     *  esto es una policy para que solo el admin pueda editar peliculas.
      */
     public function update(User $user, Pelicula $pelicula): bool
     {
-        return false;
+        return $user->rol === 'admin';
     }
 
     /**
-     * Determine whether the user can delete the model.
+     *  esto es una policy para que solo el admin pueda borrar peliculas
      */
     public function delete(User $user, Pelicula $pelicula): bool
     {
-        return false;
+        return $user->rol === 'admin';
     }
-
     /**
      * Determine whether the user can restore the model.
      */

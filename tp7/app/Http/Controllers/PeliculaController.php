@@ -40,17 +40,24 @@ class PeliculaController extends Controller
 
     public function show(int $id): View
     {
-        $pelicula = Pelicula::with(['actores', 'resenias.user'])->findOrFail($id);
+        $pelicula = Pelicula::with([
+            'actores',
+            'resenias' => function ($query) {
+                $query->orderBy('created_at', 'desc'); //para q las ultimas aparezcan primero
+            },
+            'resenias.user'
+        ])->findOrFail($id);
 
-    return view('peliculas.show', [
-        'pelicula' => $pelicula,
-        'resenias' => $pelicula->resenias, //creo que esto funciopnaria para poder ver las resenias de esa pelicula en el mimso peliculas.show
-    ]);
+        return view('peliculas.show', [
+            'pelicula' => $pelicula,
+            'resenias' => $pelicula->resenias,//creo que esto funciopnaria para poder ver las resenias de esa pelicula en el mimso peliculas.show
+        ]);
+
     }
 
     public function create(): View
     {
-        $this->authorize('create', Pelicula::class);
+        $this->authorize('create', Pelicula::class);//policy
         $actores = Actor::orderBy('apellido')->get(); //recupero los actores para mandarlos al form de pelicula
         return view('peliculas.create', [
             'maxYear' => now()->year + 5,
@@ -60,7 +67,7 @@ class PeliculaController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $this->authorize('create', Pelicula::class);
+        $this->authorize('create', Pelicula::class); //policy
         $validated = $request->validate([
             'titulo' => ['required', 'string', 'max:120', 'unique:peliculas,titulo'],
             'genero' => ['required', 'string', 'max:80'],
@@ -97,6 +104,7 @@ class PeliculaController extends Controller
     {
         $actores = Actor::orderBy('apellido')->get(); //recupero los actores para mandarlos al form de pelicula
         $pelicula = Pelicula::findOrFail($id); //acá traeria toda la data de ese pelicula
+        $this->authorize('update', $pelicula);//policy
         $maxYear = now()->year + 5;
         return view('peliculas.edit', compact('pelicula', 'maxYear', 'actores'));
     }
@@ -107,8 +115,9 @@ class PeliculaController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         $pelicula = Pelicula::findOrFail($id);
+        $this->authorize('update', $pelicula);//policy
         $validated = $request->validate([
-            'titulo' => ['string', 'max:120', 'unique:peliculas,titulo,' . $id], //esto serviria para poder validar que no se repita el nombre tambien en el update, usando ($id) asi laravel no lo chequea en la base de datos y no me da problemas porque no ve que el id ya existe
+            'titulo' => ['string', 'max:120'],
             'genero' => ['string', 'max:80'],
             'anio' => ['integer', 'min:1895', 'max:' . (now()->year + 5)],
             'descripcion' => ['string', 'max:1000'],
@@ -135,6 +144,7 @@ class PeliculaController extends Controller
     public function destroy($id)
     {
         $pelicula = Pelicula::findOrFail($id);
+        $this->authorize('delete', $pelicula); //policy
         if ($pelicula->imagen && Storage::disk('public')->exists($pelicula->imagen)) {
             Storage::disk('public')->delete($pelicula->imagen);
         }

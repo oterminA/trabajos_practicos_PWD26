@@ -62,7 +62,8 @@
 
     </nav>
     <form action="{{ route('peliculas.buscar') }}" method="get" id="formularioSearch">
-        <input type="search" name="buscar" id="buscar" placeholder=" 🔍 Buscar película por su título" autocomplete="off">
+        <input type="search" name="buscar" id="buscar" placeholder=" 🔍 Buscar película por su título"
+            autocomplete="off">
         {{-- <button type="submit" class="boton btn btn-outline-light">Buscar</button> --}}
         <div id="mostrar-resultados"></div>
     </form>
@@ -102,16 +103,19 @@
                 <div class="d-grid gap-2 d-md-block d-md-flex justify-content-md-end">
                     <a href="{{ route('peliculas.show', $pelicula->id) }}" class="btn">| Ver detalle |</a>
 
-                    @if (auth()->check() && auth()->user()->rol === 'admin')
+                    {{-- uso policies de peliculapolicy --}}
+                    @can('update', $pelicula)
                         <a href="{{ route('peliculas.edit', $pelicula->id) }}" class="btn">| Editar datos |</a>
+                    @endcan
 
+                    @can('delete', $pelicula)
                         <form action="{{ route('peliculas.delete', $pelicula->id) }}" method="POST"
                             onsubmit="return confirm('¿Estás seguro de eliminar esta película?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn">| Eliminar |</button>
                         </form>
-                    @endif
+                    @endcan
                 </div>
             </div>
         </article>

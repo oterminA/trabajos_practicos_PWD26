@@ -35,10 +35,10 @@ class ReseniaPolicy
     /**
      * esta policy es para que solo el user dueño de la resnia o el admin la pueda modificar
      */
-    public function update(User $user, Resenia $resena): bool
-    {
-        return $user->id === $resena->user_id || $user->rol === 'admin';
-    }
+    // public function update(User $user, Resenia $resenia): bool
+    // {
+    //     return (int) $user->id === (int) $resenia->user_id || $user->rol === 'admin';
+    // }
 
     /**
      * eesta policy es para que soloel admin o dueño de la resenia la pueda borrar

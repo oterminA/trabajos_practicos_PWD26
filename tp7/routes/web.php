@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\Route;
 
 //LAS URL+METODO HTTP NO SE PUEDEN REPETIR!!!!
 
-///get     -> STORE, INDEX, SHOW,
-///delete  -> DELETE
-///put     -> UPDATE
-///post    -> CREATE, EDIT
+///get     ->  INDEX, SHOW,CREATE, EDIT
+///delete/put/post  -> DELETE, STORE,UPDATE
 
 
 //para peliculas
@@ -49,13 +47,16 @@ Route::post('/chat/enviar', [PreguntaController::class, 'responder']);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////// usando MIDDLEWARE //////////////////////////////////////////
 //para users
+
+//guest: solo los usuarios que no han iniciado sesión pueden ver estas páginas o enviar estos formularios
 Route::middleware('guest')->group(function () {
-    Route::get('/cuenta-ingresar', [UserController::class, 'login'])->name('login');
+    Route::get('/cuenta-ingresar', [UserController::class, 'login'])->name('login'); //creo q laravel entiende este login
     Route::get('/cuenta-crear', [UserController::class, 'create'])->name('users.create');
     Route::post('/cuenta-guardar', [UserController::class, 'store'])->name('users.store');
     Route::post('/cuenta-ingresar', [UserController::class, 'autenticar'])->name('users.autenticar');
 });
 
+//auth: solo para los usuarios autenticados
 Route::middleware('auth')->group(function () {
     Route::get('/cuenta-cerrar', [UserController::class, 'logout'])->name('users.logout');
 });

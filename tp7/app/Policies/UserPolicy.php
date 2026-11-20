@@ -26,10 +26,10 @@ class UserPolicy
     /**
      * esto es una policy para que solo el admin pueda crear users
      */
-    public function create(User $user): bool
-    {
-        return $user->rol === 'admin';
-    }
+    // public function create(User $user): bool
+    // {
+    //     return $user->rol === 'admin';
+    // }
 
     /**
      * Determine whether the user can update the model.
